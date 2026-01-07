@@ -9,7 +9,7 @@
                     <sheet class="bg-white border border-primary rounded shadow-lg p-4">
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <h2 class="text-primary fw-bold">
-                                <i class="fa fa-folder-open mr-2" aria-hidden="true"/>
+                                <i class="fa fa-folder-open mr-2" aria-hidden="true" title="Loại tài sản"/>
                                 <field name="ten_loai_tai_san" placeholder="Nhập tên loại tài sản..." required="1"/>
                             </h2>
                             <field name="ma_loai_tai_san" readonly="1" class="text-muted medium fw-bold"/>
@@ -42,7 +42,7 @@
                             <div class="col-md-4 mt-2">
                                 <div class="card bg-light border-primary rounded shadow-sm p-3">
                                     <h5 class="card-title text-primary mb-3">
-                                        <i class="fa fa-chart-bar mr-2" aria-hidden="true"/>
+                                        <i class="fa fa-chart-bar mr-2" aria-hidden="true" title="Thống kê số lượng"/>
                                         Thống kê số lượng
                                     </h5>
                                     <div class="list-group">

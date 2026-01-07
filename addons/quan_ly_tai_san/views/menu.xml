@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-        <!-- Menu Chính -->
-        <menuitem id="menu_root" name="Quản lý tài sản (QLTS)" sequence="0"/>
-
         <!-- Quản lý Tài Sản -->
         <menuitem id="menu_tai_san" name="Quản lý tài sản" parent="menu_root" sequence="10" action="action_tai_san"/>
 

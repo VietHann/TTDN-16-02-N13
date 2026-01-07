@@ -22,6 +22,7 @@
     'data': [
         'security/ir.model.access.csv',
         'sequences.xml',
+        'views/menu_root.xml',
         'views/tai_san.xml',
         'views/phieu_muon.xml',
         'views/phieu_bao_tri.xml',
@@ -36,8 +37,8 @@
         'views/lich_su_kiem_ke.xml',
         'views/thanh_ly.xml',
         'views/khau_hao.xml',
-        'views/thong_ke.xml',
         'views/menu.xml',
+        'views/thong_ke.xml',
     ],
 
     'demo': [],
