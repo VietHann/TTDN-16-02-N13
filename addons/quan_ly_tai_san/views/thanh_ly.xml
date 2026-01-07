@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <record id="view_thanh_ly_form" model="ir.ui.view">
+            <field name="name">thanh_ly.form</field>
+            <field name="model">thanh_ly</field>
+            <field name="arch" type="xml">
+                <form string="Phiếu thanh lý tài sản">
+                    <header>
+                        <button name="action_confirm" string="Xác nhận" type="object" class="btn-primary"
+                                attrs="{'invisible': [('trang_thai', '!=', 'draft')]}"/>
+                        <button name="action_done" string="Hoàn thành" type="object" class="btn-primary"
+                                attrs="{'invisible': [('trang_thai', '!=', 'confirmed')]}"/>
+                        <button name="action_cancel" string="Hủy" type="object" class="btn-danger"
+                                attrs="{'invisible': [('trang_thai', 'in', ('done', 'cancelled'))]}"/>
+                        <field name="trang_thai" widget="statusbar" statusbar_visible="draft,confirmed,done"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="ma_thanh_ly" readonly="1"/>
+                            <field name="ngay_thanh_ly"/>
+                            <field name="tai_san_id" options="{'no_create': True}"
+                                   domain="[('thanh_ly_id', '=', False)]"/>
+                            <field name="gia_tri_thanh_ly"/>
+                            <field name="nguoi_xu_ly_id" options="{'no_create': True}"/>
+                        </group>
+                        <group>
+                            <field name="ly_do" colspan="2"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_thanh_ly_tree" model="ir.ui.view">
+            <field name="name">thanh_ly.tree</field>
+            <field name="model">thanh_ly</field>
+            <field name="arch" type="xml">
+                <tree string="Danh sách thanh lý tài sản">
+                    <field name="ma_thanh_ly"/>
+                    <field name="ngay_thanh_ly"/>
+                    <field name="tai_san_id"/>
+                    <field name="gia_tri_thanh_ly"/>
+                    <field name="nguoi_xu_ly_id"/>
+                    <field name="trang_thai"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_thanh_ly_search" model="ir.ui.view">
+            <field name="name">thanh_ly.search</field>
+            <field name="model">thanh_ly</field>
+            <field name="arch" type="xml">
+                <search string="Tìm kiếm phiếu thanh lý">
+                    <field name="ma_thanh_ly" string="Mã thanh lý"/>
+                    <field name="tai_san_id" string="Tài sản"/>
+                    <field name="nguoi_xu_ly_id" string="Người xử lý"/>
+                    <filter string="Nháp" name="draft" domain="[('trang_thai', '=', 'draft')]"/>
+                    <filter string="Đã xác nhận" name="confirmed" domain="[('trang_thai', '=', 'confirmed')]"/>
+                    <filter string="Hoàn thành" name="done" domain="[('trang_thai', '=', 'done')]"/>
+                    <filter string="Đã hủy" name="cancelled" domain="[('trang_thai', '=', 'cancelled')]"/>
+                    <group expand="1" string="Nhóm theo">
+                        <filter name="trang_thai" string="Trạng thái" context="{'group_by': 'trang_thai'}"/>
+                        <filter name="nguoi_xu_ly" string="Người xử lý" context="{'group_by': 'nguoi_xu_ly_id'}"/>
+                        <filter name="ngay_thanh_ly" string="Ngày thanh lý" context="{'group_by': 'ngay_thanh_ly'}"/>
+                    </group>
+                    <searchpanel>
+                        <field name="trang_thai" select="multi" string="Trạng thái"/>
+                        <field name="nguoi_xu_ly_id" select="multi" string="Người xử lý"/>
+                    </searchpanel>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_thanh_ly" model="ir.actions.act_window">
+            <field name="name">Thanh lý tài sản</field>
+            <field name="res_model">thanh_ly</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_thanh_ly_search"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Chưa có phiếu thanh lý nào. Nhấn "Tạo" để thêm mới!
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

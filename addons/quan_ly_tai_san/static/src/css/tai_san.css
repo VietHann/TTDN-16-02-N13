@@ -1,0 +1,8 @@
+.o_form_full_width {
+    width: 100% !important;
+    padding: 0 !important;
+}
+.o_form_sheet_full, .o_form_group_full, .o_notebook_full, .o_list_full_width, .o_search_group_full, .o_searchpanel_full {
+    max-width: 100% !important;
+    margin: 0 !important;
+}
