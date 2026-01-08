@@ -40,8 +40,6 @@ class AIConfig(models.Model):
     temperature = fields.Float(
         'Temperature',
         default=0.7,
-        min=0.0,
-        max=2.0,
         help='Độ sáng tạo của AI (0.0 = nhất quán, 2.0 = sáng tạo)'
     )
 

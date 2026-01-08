@@ -72,7 +72,7 @@ class TaiSan(models.Model):
     ]
 
     trang_thai = fields.Selection(
-        TRANG_THAI, string="Trạng thái", default="LuuTru", tracking=True,
+        TRANG_THAI, string="Trạng thái", default="LuuTru",
         help="Trạng thái hiện tại của tài sản:\n"
              "- Lưu trữ: Đang trong kho\n"
              "- Mượn: Đang có người sử dụng\n"
@@ -80,7 +80,7 @@ class TaiSan(models.Model):
              "- Hỏng: Không thể sử dụng"
     )
     trang_thai_kiem_ke = fields.Selection(
-        TRANG_THAI_KIEM_KE, string="Trạng thái Kiểm Kê", default="binh_thuong", tracking=True,
+        TRANG_THAI_KIEM_KE, string="Trạng thái Kiểm Kê", default="binh_thuong",
     )
 
     loai_tai_san_id = fields.Many2one(

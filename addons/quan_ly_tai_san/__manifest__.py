@@ -20,6 +20,7 @@
     'version': '0.1',
 
     'depends': ['base', 'mail', 'nhan_su'],
+    'license': 'LGPL-3',
 
     'data': [
         'security/ir.model.access.csv',

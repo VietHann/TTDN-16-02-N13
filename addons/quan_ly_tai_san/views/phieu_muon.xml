@@ -42,8 +42,8 @@
                                     <field name="signature_date" readonly="1"/>
                                     <field name="signature_data" widget="simple_signature" attrs="{'invisible': [('signature_status', '=', 'signed')]}"/>
                                     <div attrs="{'invisible': [('signature_status', '!=', 'signed')]}" class="text-center mt-3">
-                                        <div class="alert alert-success">
-                                            <i class="fa fa-check-circle fa-2x"></i>
+                                        <div class="alert alert-success" role="alert">
+                                            <i class="fa fa-check-circle fa-2x" title="Đã ký xác nhận"></i>
                                             <h5>Đã ký xác nhận trả tài sản</h5>
                                             <p>Người ký: <strong><field name="signature_name" readonly="1"/></strong></p>
                                             <p>Thời gian: <field name="signature_date" readonly="1" widget="datetime"/></p>
