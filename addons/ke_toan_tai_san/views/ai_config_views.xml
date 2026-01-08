@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- AI Config Views -->
+    <record id="ai_config_form_view" model="ir.ui.view">
+        <field name="name">ai.config.form</field>
+        <field name="model">ai.config</field>
+        <field name="arch" type="xml">
+            <form string="Cấu hình AI Chatbot">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Tên cấu hình AI"/>
+                        </h1>
+                    </div>
+
+                    <group>
+                        <group string="Cơ bản">
+                            <field name="is_active"/>
+                            <field name="openrouter_api_key" password="True"/>
+                            <field name="openrouter_model"/>
+                        </group>
+
+                        <group string="Cài đặt Chat">
+                            <field name="max_conversation_length"/>
+                            <field name="max_response_tokens"/>
+                            <field name="temperature"/>
+                        </group>
+                    </group>
+
+                    <group string="System Prompt">
+                        <field name="system_prompt" widget="text" colspan="4" nolabel="1"/>
+                    </group>
+
+                    <group string="Tính năng">
+                        <field name="enable_asset_search"/>
+                        <field name="enable_employee_search"/>
+                        <field name="enable_room_booking"/>
+                        <field name="enable_analytics"/>
+                    </group>
+
+                    <group string="Bảo mật">
+                        <field name="allowed_user_groups" widget="many2many_tags"/>
+                    </group>
+
+                    <group string="Thống kê" colspan="4">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title">Tổng cuộc trò chuyện</h5>
+                                        <h3 class="text-primary"><field name="total_conversations"/></h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title">Tổng tin nhắn</h5>
+                                        <h3 class="text-success"><field name="total_messages"/></h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title">Thời gian phản hồi TB</h5>
+                                        <h3 class="text-info"><field name="avg_response_time"/>s</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title">Trạng thái</h5>
+                                        <h3>
+                                            <span class="badge badge-success" attrs="{'invisible': [('is_active', '=', False)]}">Hoạt động</span>
+                                            <span class="badge badge-secondary" attrs="{'invisible': [('is_active', '=', True)]}">Tạm dừng</span>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="ai_config_tree_view" model="ir.ui.view">
+        <field name="name">ai.config.tree</field>
+        <field name="model">ai.config</field>
+        <field name="arch" type="xml">
+            <tree string="Cấu hình AI">
+                <field name="name"/>
+                <field name="is_active"/>
+                <field name="openrouter_model"/>
+                <field name="total_conversations"/>
+                <field name="total_messages"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="ai_config_action" model="ir.actions.act_window">
+        <field name="name">Cấu hình AI Chatbot</field>
+        <field name="res_model">ai.config</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help">Cấu hình các thiết lập cho AI Chatbot</field>
+    </record>
+</odoo>

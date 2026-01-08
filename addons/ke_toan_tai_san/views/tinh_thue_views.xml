@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_tinh_thue_tree" model="ir.ui.view">
+        <field name="name">ke.toan.tinh.thue.tree</field>
+        <field name="model">ke_toan.tinh_thue</field>
+        <field name="arch" type="xml">
+            <tree string="Tính thuế">
+                <field name="ten_ke_hoach"/>
+                <field name="loai_thue"/>
+                <field name="thang"/>
+                <field name="nam"/>
+                <field name="don_vi_id"/>
+                <field name="tong_thue_phai_nop" widget="monetary"/>
+                <field name="trang_thai" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_tinh_thue_form" model="ir.ui.view">
+        <field name="name">ke.toan.tinh.thue.form</field>
+        <field name="model">ke_toan.tinh_thue</field>
+        <field name="arch" type="xml">
+            <form string="Tính thuế">
+                <header>
+                    <button name="action_tinh_thue" string="Tính thuế" type="object" attrs="{'invisible': [('trang_thai', '!=', 'du_thao')]}" class="oe_highlight"/>
+                    <button name="action_nop_thue" string="Đã nộp thuế" type="object" attrs="{'invisible': [('trang_thai', '!=', 'da_tinh')]}" class="oe_highlight"/>
+                    <field name="trang_thai" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="ten_ke_hoach"/>
+                            <field name="loai_thue"/>
+                            <field name="thang"/>
+                            <field name="nam"/>
+                        </group>
+                        <group>
+                            <field name="don_vi_id"/>
+                            <field name="nguoi_tinh_id"/>
+                            <field name="ngay_nop" readonly="1"/>
+                        </group>
+                    </group>
+                    
+                    <!-- Thuế GTGT -->
+                    <group string="Thuế GTGT" attrs="{'invisible': [('loai_thue', '!=', 'vat')]}">
+                        <group>
+                            <field name="doanh_thu" widget="monetary"/>
+                            <field name="thue_suat_vat"/>
+                        </group>
+                        <group>
+                            <field name="thue_vat" widget="monetary"/>
+                        </group>
+                    </group>
+
+                    <!-- Thuế TNDN -->
+                    <group string="Thuế Thu nhập Doanh nghiệp" attrs="{'invisible': [('loai_thue', '!=', 'thu_nhap_dn')]}">
+                        <group>
+                            <field name="loi_nhuan_truoc_thue" widget="monetary"/>
+                            <field name="thue_suat_tndn"/>
+                        </group>
+                        <group>
+                            <field name="thue_tndn" widget="monetary"/>
+                        </group>
+                    </group>
+
+                    <!-- Thuế TNCN -->
+                    <group string="Thuế Thu nhập Cá nhân" attrs="{'invisible': [('loai_thue', '!=', 'thu_nhap_ca_nhan')]}">
+                        <group>
+                            <field name="tong_luong" widget="monetary"/>
+                            <field name="giam_tru" widget="monetary"/>
+                        </group>
+                        <group>
+                            <field name="thu_nhap_tinh_thue" widget="monetary"/>
+                            <field name="thue_tncn" widget="monetary"/>
+                        </group>
+                    </group>
+
+                    <group>
+                        <field name="tong_thue_phai_nop" widget="monetary" class="oe_subtotal_footer_separator"/>
+                    </group>
+
+                    <group>
+                        <field name="ghi_chu" placeholder="Ghi chú..."/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_tinh_thue" model="ir.actions.act_window">
+        <field name="name">Tính thuế</field>
+        <field name="res_model">ke_toan.tinh_thue</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu will be added in menu.xml -->
+</odoo>

@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        
+        <!-- Demo Vị trí -->
+        <record id="demo_vi_tri_tang_1" model="vi_tri">
+            <field name="ma_vi_tri">VT-0001</field>
+            <field name="ten_vi_tri">Tầng 1 - Phòng họp</field>
+        </record>
+        
+        <record id="demo_vi_tri_tang_2" model="vi_tri">
+            <field name="ma_vi_tri">VT-0002</field>
+            <field name="ten_vi_tri">Tầng 2 - Văn phòng</field>
+        </record>
+        
+        <record id="demo_vi_tri_kho" model="vi_tri">
+            <field name="ma_vi_tri">VT-0003</field>
+            <field name="ten_vi_tri">Kho tài sản</field>
+        </record>
+
+        <!-- Demo Nhà cung cấp -->
+        <record id="demo_ncc_dell" model="nha_cung_cap">
+            <field name="ma_nha_cung_cap">NCC-00001</field>
+            <field name="ten_nha_cung_cap">Dell Technologies Vietnam</field>
+            <field name="ten_nguoi_dai_dien">Nguyễn Văn A</field>
+            <field name="email">sales@dell.vn</field>
+            <field name="so_dien_thoai">1800-1234</field>
+        </record>
+        
+        <record id="demo_ncc_hp" model="nha_cung_cap">
+            <field name="ma_nha_cung_cap">NCC-00002</field>
+            <field name="ten_nha_cung_cap">HP Vietnam</field>
+            <field name="ten_nguoi_dai_dien">Trần Thị B</field>
+            <field name="email">contact@hp.vn</field>
+            <field name="so_dien_thoai">1800-5678</field>
+        </record>
+
+        <!-- Demo Loại tài sản -->
+        <record id="demo_loai_may_tinh" model="loai_tai_san">
+            <field name="ma_loai_tai_san">LTS-00001</field>
+            <field name="ten_loai_tai_san">Máy tính xách tay</field>
+            <field name="mo_ta">Laptop, Notebook</field>
+        </record>
+        
+        <record id="demo_loai_may_chieu" model="loai_tai_san">
+            <field name="ma_loai_tai_san">LTS-00002</field>
+            <field name="ten_loai_tai_san">Máy chiếu</field>
+            <field name="mo_ta">Projector, Màn hình chiếu</field>
+        </record>
+        
+        <record id="demo_loai_may_in" model="loai_tai_san">
+            <field name="ma_loai_tai_san">LTS-00003</field>
+            <field name="ten_loai_tai_san">Máy in</field>
+            <field name="mo_ta">Printer, Scanner</field>
+        </record>
+        
+        <record id="demo_loai_thiet_bi_phong_hop" model="loai_tai_san">
+            <field name="ma_loai_tai_san">LTS-00004</field>
+            <field name="ten_loai_tai_san">Thiết bị phòng họp</field>
+            <field name="mo_ta">Micro, Loa, Camera</field>
+        </record>
+
+        <!-- Demo Tài sản -->
+        <record id="demo_tai_san_1" model="tai_san">
+            <field name="ma_tai_san">TS-00001</field>
+            <field name="ten_tai_san">Laptop Dell Inspiron 15</field>
+            <field name="so_serial">DELL-2024-001</field>
+            <field name="ngay_mua" eval="(DateTime.now() - timedelta(days=365)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="gia_tien_mua">20000000</field>
+            <field name="loai_tai_san_id" ref="demo_loai_may_tinh"/>
+            <field name="vi_tri_hien_tai_id" ref="demo_vi_tri_tang_2"/>
+            <field name="nha_cung_cap_id" ref="demo_ncc_dell"/>
+            <field name="trang_thai">LuuTru</field>
+        </record>
+        
+        <record id="demo_tai_san_2" model="tai_san">
+            <field name="ma_tai_san">TS-00002</field>
+            <field name="ten_tai_san">Laptop Dell Latitude 14</field>
+            <field name="so_serial">DELL-2024-002</field>
+            <field name="ngay_mua" eval="(DateTime.now() - timedelta(days=365)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="gia_tien_mua">25000000</field>
+            <field name="loai_tai_san_id" ref="demo_loai_may_tinh"/>
+            <field name="vi_tri_hien_tai_id" ref="demo_vi_tri_tang_2"/>
+            <field name="nha_cung_cap_id" ref="demo_ncc_dell"/>
+            <field name="trang_thai">LuuTru</field>
+        </record>
+        
+        <record id="demo_tai_san_3" model="tai_san">
+            <field name="ma_tai_san">TS-00003</field>
+            <field name="ten_tai_san">Máy chiếu Epson EB-X06</field>
+            <field name="so_serial">EPSON-2023-001</field>
+            <field name="ngay_mua" eval="(DateTime.now() - timedelta(days=730)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="gia_tien_mua">15000000</field>
+            <field name="loai_tai_san_id" ref="demo_loai_may_chieu"/>
+            <field name="vi_tri_hien_tai_id" ref="demo_vi_tri_tang_1"/>
+            <field name="trang_thai">LuuTru</field>
+        </record>
+        
+        <record id="demo_tai_san_4" model="tai_san">
+            <field name="ma_tai_san">TS-00004</field>
+            <field name="ten_tai_san">Máy in HP LaserJet Pro</field>
+            <field name="so_serial">HP-2024-001</field>
+            <field name="ngay_mua" eval="(DateTime.now() - timedelta(days=180)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="gia_tien_mua">8000000</field>
+            <field name="loai_tai_san_id" ref="demo_loai_may_in"/>
+            <field name="vi_tri_hien_tai_id" ref="demo_vi_tri_tang_2"/>
+            <field name="nha_cung_cap_id" ref="demo_ncc_hp"/>
+            <field name="trang_thai">LuuTru</field>
+        </record>
+        
+        <record id="demo_tai_san_5" model="tai_san">
+            <field name="ma_tai_san">TS-00005</field>
+            <field name="ten_tai_san">Micro không dây Shure</field>
+            <field name="so_serial">SHURE-2023-001</field>
+            <field name="ngay_mua" eval="(DateTime.now() - timedelta(days=500)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="gia_tien_mua">5000000</field>
+            <field name="loai_tai_san_id" ref="demo_loai_thiet_bi_phong_hop"/>
+            <field name="vi_tri_hien_tai_id" ref="demo_vi_tri_tang_1"/>
+            <field name="trang_thai">LuuTru</field>
+        </record>
+        
+        <record id="demo_tai_san_6" model="tai_san">
+            <field name="ma_tai_san">TS-00006</field>
+            <field name="ten_tai_san">Màn hình LED 55 inch</field>
+            <field name="so_serial">LED-2023-001</field>
+            <field name="ngay_mua" eval="(DateTime.now() - timedelta(days=600)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="gia_tien_mua">12000000</field>
+            <field name="loai_tai_san_id" ref="demo_loai_thiet_bi_phong_hop"/>
+            <field name="vi_tri_hien_tai_id" ref="demo_vi_tri_tang_1"/>
+            <field name="trang_thai">LuuTru</field>
+        </record>
+
+        <!-- Demo Phòng họp -->
+        <record id="demo_phong_hop_1" model="phong_hop">
+            <field name="ma_phong">PH-A01</field>
+            <field name="ten_phong">Phòng họp Lớn</field>
+            <field name="vi_tri_id" ref="demo_vi_tri_tang_1"/>
+            <field name="suc_chua">20</field>
+            <field name="dien_tich">50</field>
+            <field name="trang_thai">san_sang</field>
+            <field name="mo_ta">Phòng họp lớn, phù hợp cho hội nghị, training</field>
+            <field name="thiet_bi_ids" eval="[(6, 0, [ref('demo_tai_san_3'), ref('demo_tai_san_5'), ref('demo_tai_san_6')])]"/>
+        </record>
+        
+        <record id="demo_phong_hop_2" model="phong_hop">
+            <field name="ma_phong">PH-B01</field>
+            <field name="ten_phong">Phòng họp Nhỏ</field>
+            <field name="vi_tri_id" ref="demo_vi_tri_tang_1"/>
+            <field name="suc_chua">8</field>
+            <field name="dien_tich">20</field>
+            <field name="trang_thai">san_sang</field>
+            <field name="mo_ta">Phòng họp nhỏ cho team meeting</field>
+        </record>
+        
+        <record id="demo_phong_hop_3" model="phong_hop">
+            <field name="ma_phong">PH-C01</field>
+            <field name="ten_phong">Phòng họp VIP</field>
+            <field name="vi_tri_id" ref="demo_vi_tri_tang_1"/>
+            <field name="suc_chua">12</field>
+            <field name="dien_tich">35</field>
+            <field name="trang_thai">san_sang</field>
+            <field name="mo_ta">Phòng họp VIP cho khách hàng quan trọng</field>
+        </record>
+
+        <!-- Demo Đặt phòng -->
+        <record id="demo_dat_phong_1" model="dat_phong">
+            <field name="ma_dat_phong">DP-00001</field>
+            <field name="tieu_de">Họp Sprint Planning</field>
+            <field name="phong_hop_id" ref="demo_phong_hop_1"/>
+            <field name="nguoi_dat_id" ref="nhan_su.demo_nhan_vien_1"/>
+            <field name="ngay_bat_dau" eval="(DateTime.now() + timedelta(days=1, hours=9)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="ngay_ket_thuc" eval="(DateTime.now() + timedelta(days=1, hours=11)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="so_nguoi_tham_gia">15</field>
+            <field name="noi_dung">Planning cho Sprint tháng tới</field>
+            <field name="trang_thai">cho_xac_nhan</field>
+        </record>
+        
+        <record id="demo_dat_phong_2" model="dat_phong">
+            <field name="ma_dat_phong">DP-00002</field>
+            <field name="tieu_de">Training Odoo</field>
+            <field name="phong_hop_id" ref="demo_phong_hop_1"/>
+            <field name="nguoi_dat_id" ref="nhan_su.demo_nhan_vien_2"/>
+            <field name="ngay_bat_dau" eval="(DateTime.now() + timedelta(days=2, hours=14)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="ngay_ket_thuc" eval="(DateTime.now() + timedelta(days=2, hours=17)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="so_nguoi_tham_gia">12</field>
+            <field name="noi_dung">Đào tạo Odoo cho nhân viên mới</field>
+            <field name="trang_thai">cho_xac_nhan</field>
+        </record>
+
+        <!-- Demo Phiếu mượn -->
+        <record id="demo_phieu_muon_1" model="phieu_muon">
+            <field name="ma_phieu_muon">PM-00001</field>
+            <field name="tai_san_id" ref="demo_tai_san_1"/>
+            <field name="nhan_vien_id" ref="nhan_su.demo_nhan_vien_4"/>
+            <field name="ngay_muon_du_kien" eval="(DateTime.now() - timedelta(days=10)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="ngay_muon_thuc_te" eval="(DateTime.now() - timedelta(days=10)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="ngay_tra_du_kien" eval="(DateTime.now() + timedelta(days=20)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="state">approved</field>
+            <field name="ghi_chu">Mượn laptop để làm dự án</field>
+        </record>
+        
+        <record id="demo_phieu_muon_2" model="phieu_muon">
+            <field name="ma_phieu_muon">PM-00002</field>
+            <field name="tai_san_id" ref="demo_tai_san_4"/>
+            <field name="nhan_vien_id" ref="nhan_su.demo_nhan_vien_5"/>
+            <field name="ngay_muon_du_kien" eval="(DateTime.now() - timedelta(days=5)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="ngay_muon_thuc_te" eval="(DateTime.now() - timedelta(days=5)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="ngay_tra_du_kien" eval="(DateTime.now() + timedelta(days=25)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="state">approved</field>
+            <field name="ghi_chu">Mượn máy in cho văn phòng</field>
+        </record>
+
+        <!-- Demo Lịch sử sử dụng -->
+        <record id="demo_lich_su_su_dung_1" model="lich_su_su_dung">
+            <field name="ma_lich_su_su_dung">LS-0001</field>
+            <field name="tai_san_id" ref="demo_tai_san_1"/>
+            <field name="nhan_vien_id" ref="nhan_su.demo_nhan_vien_4"/>
+            <field name="ngay_muon" eval="(DateTime.now() - timedelta(days=60)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="ngay_tra" eval="(DateTime.now() - timedelta(days=30)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="ghi_chu">Sử dụng cho dự án A</field>
+        </record>
+        
+        <record id="demo_lich_su_su_dung_2" model="lich_su_su_dung">
+            <field name="ma_lich_su_su_dung">LS-0002</field>
+            <field name="tai_san_id" ref="demo_tai_san_2"/>
+            <field name="nhan_vien_id" ref="nhan_su.demo_nhan_vien_3"/>
+            <field name="ngay_muon" eval="(DateTime.now() - timedelta(days=90)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="ngay_tra" eval="(DateTime.now() - timedelta(days=60)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="ghi_chu">Sử dụng cho training</field>
+        </record>
+
+        <!-- Demo Phiếu bảo trì -->
+        <record id="demo_phieu_bao_tri_1" model="phieu_bao_tri">
+            <field name="ma_phieu_bao_tri">PB-00001</field>
+            <field name="tai_san_id" ref="demo_tai_san_3"/>
+            <field name="ngay_bao_tri" eval="(DateTime.now() - timedelta(days=15)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="ngay_bao_tri_thuc_te" eval="(DateTime.now() - timedelta(days=15)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="ngay_tra" eval="(DateTime.now() - timedelta(days=14)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="ngay_tra_thuc_te" eval="(DateTime.now() - timedelta(days=14)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="chi_phi">2000000</field>
+            <field name="state">done</field>
+            <field name="ghi_chu">Thay bóng đèn máy chiếu</field>
+        </record>
+
+        <!-- Demo Phiếu điều chuyển -->
+        <record id="demo_phieu_dieu_chuyen_1" model="phieu_dieu_chuyen">
+            <field name="ten_phieu">PDC-00001</field>
+            <field name="tai_san" ref="demo_tai_san_2"/>
+            <field name="vi_tri_moi" ref="demo_vi_tri_tang_1"/>
+            <field name="ngay_dieu_chuyen" eval="(DateTime.now() - timedelta(days=20)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="trang_thai">hoan_thanh</field>
+            <field name="ghi_chu">Chuyển laptop từ tầng 2 xuống tầng 1</field>
+        </record>
+
+        <!-- Demo Phiếu kiểm kê -->
+        <record id="demo_phieu_kiem_ke_1" model="phieu_kiem_ke">
+            <field name="ma_phieu_kiem_ke">PKK-00001</field>
+            <field name="ngay_kiem_ke" eval="(DateTime.now() - timedelta(days=7)).strftime('%Y-%m-%d')"/>
+            <field name="trang_thai_thuc_te">binh_thuong</field>
+            <field name="state">done</field>
+            <field name="tai_san_ids" eval="[(6, 0, [ref('demo_tai_san_1'), ref('demo_tai_san_2'), ref('demo_tai_san_3')])]"/>
+            <field name="ghi_chu">Kiểm kê định kỳ tháng 1/2026</field>
+        </record>
+
+        <!-- Demo Bảo trì phòng họp -->
+        <record id="demo_bao_tri_phong_1" model="bao_tri_phong_hop">
+            <field name="ma_bao_tri">BTPH-00001</field>
+            <field name="phong_hop_id" ref="demo_phong_hop_1"/>
+            <field name="ngay_bat_dau" eval="(DateTime.now() - timedelta(days=30)).strftime('%Y-%m-%d')"/>
+            <field name="ngay_ket_thuc" eval="(DateTime.now() - timedelta(days=29)).strftime('%Y-%m-%d')"/>
+            <field name="loai_bao_tri">dinh_ky</field>
+            <field name="trang_thai">hoan_thanh</field>
+            <field name="chi_phi">5000000</field>
+            <field name="noi_dung">Vệ sinh, kiểm tra hệ thống điện</field>
+        </record>
+        
+        <record id="demo_bao_tri_phong_2" model="bao_tri_phong_hop">
+            <field name="ma_bao_tri">BTPH-00002</field>
+            <field name="phong_hop_id" ref="demo_phong_hop_2"/>
+            <field name="ngay_bat_dau" eval="(DateTime.now() - timedelta(days=10)).strftime('%Y-%m-%d')"/>
+            <field name="ngay_ket_thuc" eval="(DateTime.now() - timedelta(days=9)).strftime('%Y-%m-%d')"/>
+            <field name="loai_bao_tri">sua_chua</field>
+            <field name="trang_thai">hoan_thanh</field>
+            <field name="chi_phi">3000000</field>
+            <field name="noi_dung">Sửa điều hòa</field>
+        </record>
+
+        <!-- Demo Nâng cấp phòng họp -->
+        <record id="demo_nang_cap_phong_1" model="nang_cap_phong_hop">
+            <field name="ma_nang_cap">NCPH-00001</field>
+            <field name="phong_hop_id" ref="demo_phong_hop_3"/>
+            <field name="nguoi_de_xuat_id" ref="nhan_su.demo_nhan_vien_1"/>
+            <field name="ngay_nang_cap" eval="(DateTime.now() - timedelta(days=60)).strftime('%Y-%m-%d')"/>
+            <field name="ngay_hoan_thanh" eval="(DateTime.now() - timedelta(days=55)).strftime('%Y-%m-%d')"/>
+            <field name="loai_nang_cap">thiet_bi</field>
+            <field name="trang_thai">hoan_thanh</field>
+            <field name="chi_phi_du_kien">20000000</field>
+            <field name="chi_phi_thuc_te">22000000</field>
+            <field name="noi_dung">Lắp đặt hệ thống âm thanh mới</field>
+        </record>
+        
+        <record id="demo_nang_cap_phong_2" model="nang_cap_phong_hop">
+            <field name="ma_nang_cap">NCPH-00002</field>
+            <field name="phong_hop_id" ref="demo_phong_hop_1"/>
+            <field name="nguoi_de_xuat_id" ref="nhan_su.demo_nhan_vien_2"/>
+            <field name="ngay_nang_cap" eval="(DateTime.now() - timedelta(days=45)).strftime('%Y-%m-%d')"/>
+            <field name="ngay_hoan_thanh" eval="(DateTime.now() - timedelta(days=43)).strftime('%Y-%m-%d')"/>
+            <field name="loai_nang_cap">trang_tri</field>
+            <field name="trang_thai">hoan_thanh</field>
+            <field name="chi_phi_du_kien">15000000</field>
+            <field name="chi_phi_thuc_te">14500000</field>
+            <field name="noi_dung">Thay mới bàn ghế và rèm cửa</field>
+        </record>
+
+        <!-- Demo Phiếu nhập hàng -->
+        <record id="demo_phieu_nhap_hang_1" model="phieu_nhap_hang">
+            <field name="ma_phieu">PNH-00001</field>
+            <field name="ngay_nhap" eval="(DateTime.now() - timedelta(days=365)).strftime('%Y-%m-%d')"/>
+            <field name="nha_cung_cap_id" ref="demo_ncc_dell"/>
+            <field name="nguoi_lap_id" ref="nhan_su.demo_nhan_vien_1"/>
+            <field name="trang_thai">hoan_thanh</field>
+            <field name="ghi_chu">Nhập 2 laptop Dell</field>
+        </record>
+        
+        <record id="demo_phieu_nhap_hang_2" model="phieu_nhap_hang">
+            <field name="ma_phieu">PNH-00002</field>
+            <field name="ngay_nhap" eval="(DateTime.now() - timedelta(days=180)).strftime('%Y-%m-%d')"/>
+            <field name="nha_cung_cap_id" ref="demo_ncc_hp"/>
+            <field name="nguoi_lap_id" ref="nhan_su.demo_nhan_vien_2"/>
+            <field name="trang_thai">hoan_thanh</field>
+            <field name="ghi_chu">Nhập máy in HP</field>
+        </record>
+
+    </data>
+</odoo>

@@ -14,4 +14,10 @@ access_phieu_kiem_ke,phieu_kiem_ke.phieu_kiem_ke,model_phieu_kiem_ke,base.group_
 access_lich_su_kiem_ke,lich_su_kiem_ke.lich_su_kiem_ke,model_lich_su_kiem_ke,base.group_user,1,1,1,1
 access_thanh_ly,thanh_ly.thanh_ly,model_thanh_ly,base.group_user,1,1,1,1
 access_thong_ke,thong_ke.thong_ke,model_thong_ke,base.group_user,1,1,1,1
+access_phieu_nhap_hang,phieu_nhap_hang.phieu_nhap_hang,model_phieu_nhap_hang,base.group_user,1,1,1,1
+access_phieu_nhap_hang_chi_tiet,phieu_nhap_hang_chi_tiet.phieu_nhap_hang_chi_tiet,model_phieu_nhap_hang_chi_tiet,base.group_user,1,1,1,1
+access_phong_hop,phong_hop.phong_hop,model_phong_hop,base.group_user,1,1,1,1
+access_dat_phong,dat_phong.dat_phong,model_dat_phong,base.group_user,1,1,1,1
+access_bao_tri_phong_hop,bao_tri_phong_hop.bao_tri_phong_hop,model_bao_tri_phong_hop,base.group_user,1,1,1,1
+access_nang_cap_phong_hop,nang_cap_phong_hop.nang_cap_phong_hop,model_nang_cap_phong_hop,base.group_user,1,1,1,1
 

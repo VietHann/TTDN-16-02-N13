@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/home/vietlv/odo/odoo-fitdnu/odoo-bin.py", line 5, in <module>
+    import odoo
+  File "/home/vietlv/odo/odoo-fitdnu/odoo/__init__.py", line 134, in <module>
+    from . import modules
+  File "/home/vietlv/odo/odoo-fitdnu/odoo/modules/__init__.py", line 8, in <module>
+    from . import db, graph, loading, migration, module, registry
+  File "/home/vietlv/odo/odoo-fitdnu/odoo/modules/graph.py", line 10, in <module>
+    import odoo.tools as tools
+  File "/home/vietlv/odo/odoo-fitdnu/odoo/tools/__init__.py", line 4, in <module>
+    from . import _monkeypatches
+  File "/home/vietlv/odo/odoo-fitdnu/odoo/tools/_monkeypatches.py", line 9, in <module>
+    from werkzeug.datastructures import FileStorage
+ModuleNotFoundError: No module named 'werkzeug'

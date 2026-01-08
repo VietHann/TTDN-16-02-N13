@@ -55,10 +55,75 @@
               action="action_ai_predictor"
               sequence="1"/>
     
-    <menuitem id="menu_ai_analytics" 
+    <menuitem id="menu_ai_analytics"
               name="Phân tích Hiệu quả"
               parent="menu_ai"
               action="action_ai_analytics"
               sequence="2"/>
+
+    <menuitem id="menu_ai_config"
+              name="Cấu hình AI"
+              parent="menu_ai"
+              action="ai_config_action"
+              sequence="4"/>
+
+    <menuitem id="menu_ai_history"
+              name="Lịch sử Chat"
+              parent="menu_ai"
+              action="ai_chat_history_action"
+              sequence="5"/>
+    
+    <!-- Menu Thu Chi -->
+    <menuitem id="menu_thu_chi" 
+              name="Thu Chi"
+              parent="menu_ke_toan_tai_san_root"
+              sequence="15"/>
+    
+    <menuitem id="menu_phieu_thu" 
+              name="Phiếu Thu"
+              parent="menu_thu_chi"
+              action="action_phieu_thu"
+              sequence="1"/>
+    
+    <menuitem id="menu_phieu_chi" 
+              name="Phiếu Chi"
+              parent="menu_thu_chi"
+              action="action_phieu_chi"
+              sequence="2"/>
+    
+    <!-- Menu Ngân sách -->
+    <menuitem id="menu_ngan_sach" 
+              name="Ngân sách"
+              parent="menu_ke_toan_tai_san_root"
+              action="action_ngan_sach"
+              sequence="16"/>
+    
+    <!-- Menu Công nợ -->
+    <menuitem id="menu_cong_no" 
+              name="Công nợ"
+              parent="menu_ke_toan_tai_san_root"
+              action="action_cong_no"
+              sequence="17"/>
+    
+    <!-- Menu Hóa đơn -->
+    <menuitem id="menu_hoa_don" 
+              name="Hóa đơn"
+              parent="menu_ke_toan_tai_san_root"
+              action="action_hoa_don"
+              sequence="18"/>
+    
+    <!-- Menu Sao kê -->
+    <menuitem id="menu_sao_ke" 
+              name="Sao kê"
+              parent="menu_ke_toan_tai_san_root"
+              action="action_sao_ke"
+              sequence="19"/>
+    
+    <!-- Menu Tính thuế -->
+    <menuitem id="menu_tinh_thue" 
+              name="Tính thuế"
+              parent="menu_ke_toan_tai_san_root"
+              action="action_tinh_thue"
+              sequence="25"/>
     
 </odoo>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Minimal demo data placeholder for nhan_su module to avoid missing-file error -->
+    <record id="demo_nhan_su_partner_1" model="res.partner">
+        <field name="name">Demo Nhân Sự Partner</field>
+        <field name="email">demo.nhan_su@example.com</field>
+    </record>
+</odoo>

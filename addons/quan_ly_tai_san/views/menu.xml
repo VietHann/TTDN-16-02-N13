@@ -52,5 +52,44 @@
                   sequence="30" action="action_lich_su_su_dung_line"/>
         <menuitem id="menu_tai_san_pie_nha_cung_cap" name="Nhà cung cấp (Pie)" parent="menu_tai_san_statistics"
                   sequence="40" action="action_tai_san_pie_nha_cung_cap"/>
+        
+        <!-- Menu Nhập hàng -->
+        <menuitem id="menu_phieu_nhap_hang"
+                  name="Nhập hàng"
+                  parent="menu_root"
+                  action="action_phieu_nhap_hang"
+                  sequence="12"/>
+        
+        <!-- Menu Phòng họp -->
+        <menuitem id="menu_phong_hop_root"
+                  name="Phòng họp"
+                  parent="menu_root"
+                  sequence="60"/>
+        
+        <menuitem id="menu_phong_hop"
+                  name="Danh sách phòng"
+                  parent="menu_phong_hop_root"
+                  action="action_phong_hop"
+                  sequence="1"/>
+        
+        <menuitem id="menu_dat_phong"
+                  name="Đặt phòng"
+                  parent="menu_phong_hop_root"
+                  action="action_dat_phong"
+                  sequence="2"/>
+        
+        <menuitem id="menu_bao_tri_phong_hop"
+                  name="Bảo trì"
+                  parent="menu_phong_hop_root"
+                  action="action_bao_tri_phong_hop"
+                  sequence="3"/>
+        
+        <menuitem id="menu_nang_cap_phong_hop"
+                  name="Nâng cấp"
+                  parent="menu_phong_hop_root"
+                  action="action_nang_cap_phong_hop"
+                  sequence="4"/>
+
+        <!-- AI Chatbot - sẽ được sử dụng từ module ke_toan_tai_san -->
     </data>
 </odoo>

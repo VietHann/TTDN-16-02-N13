@@ -43,11 +43,13 @@
             sequence="4"
             action="action_lich_su_cong_tac"
         />
-        <menuitem name="Danh sách chứng chỉ, bằng cấp" 
-            id="menu_danh_sach_chung_chi_bang_cap" 
-            parent="menu_root" 
+        <menuitem name="Danh sách chứng chỉ, bằng cấp"
+            id="menu_danh_sach_chung_chi_bang_cap"
+            parent="menu_root"
             sequence="4"
             action="action_danh_sach_chung_chi_bang_cap"
         />
+
+        <!-- AI Chatbot sẽ được sử dụng từ module ke_toan_tai_san -->
     </data>
 </odoo>

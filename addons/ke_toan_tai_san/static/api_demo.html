@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odoo REST API Demo</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 2em;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        
+        .api-key-section {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .api-key-section input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        
+        .endpoint-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .endpoint-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .endpoint-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .method {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+        
+        .method.get { background: #28a745; color: white; }
+        .method.post { background: #ffc107; color: #333; }
+        
+        .endpoint-path {
+            font-family: monospace;
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .endpoint-desc {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .response-container {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 20px;
+            border-radius: 10px;
+            max-height: 500px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            display: none;
+        }
+        
+        .response-container.show {
+            display: block;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #667eea;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .status-200 { background: #28a745; color: white; }
+        .status-400 { background: #dc3545; color: white; }
+        .status-401 { background: #ffc107; color: #333; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Odoo REST API Demo</h1>
+        <p class="subtitle">Hệ thống Quản lý Tài sản - External API</p>
+        
+        <div class="api-key-section">
+            <label><strong>🔐 API Key:</strong></label>
+            <input type="text" id="apiKey" value="demo-api-key-12345" placeholder="Nhập API key...">
+        </div>
+        
+        <div class="endpoint-grid">
+            <div class="endpoint-card" onclick="callAPI('/api/info', 'GET')">
+                <span class="method get">GET</span>
+                <div class="endpoint-path">/api/info</div>
+                <div class="endpoint-desc">Thông tin API</div>
+            </div>
+            
+            <div class="endpoint-card" onclick="callAPI('/api/tai_san', 'GET')">
+                <span class="method get">GET</span>
+                <div class="endpoint-path">/api/tai_san</div>
+                <div class="endpoint-desc">Danh sách tài sản</div>
+            </div>
+            
+            <div class="endpoint-card" onclick="callAPI('/api/tai_san/1', 'GET')">
+                <span class="method get">GET</span>
+                <div class="endpoint-path">/api/tai_san/1</div>
+                <div class="endpoint-desc">Chi tiết tài sản #1</div>
+            </div>
+            
+            <div class="endpoint-card" onclick="callAPI('/api/phong_hop', 'GET')">
+                <span class="method get">GET</span>
+                <div class="endpoint-path">/api/phong_hop</div>
+                <div class="endpoint-desc">Danh sách phòng họp</div>
+            </div>
+            
+            <div class="endpoint-card" onclick="callAPI('/api/nhan_vien', 'GET')">
+                <span class="method get">GET</span>
+                <div class="endpoint-path">/api/nhan_vien</div>
+                <div class="endpoint-desc">Danh sách nhân viên</div>
+            </div>
+            
+            <div class="endpoint-card" onclick="callAPI('/api/thong_ke', 'GET')">
+                <span class="method get">GET</span>
+                <div class="endpoint-path">/api/thong_ke</div>
+                <div class="endpoint-desc">Thống kê tổng quan</div>
+            </div>
+        </div>
+        
+        <div id="responseContainer" class="response-container"></div>
+    </div>
+    
+    <script>
+        const BASE_URL = 'http://localhost:8069';
+        
+        async function callAPI(endpoint, method = 'GET', body = null) {
+            const container = document.getElementById('responseContainer');
+            container.className = 'response-container show';
+            container.innerHTML = '<div class="loading">⏳ Đang gọi API...</div>';
+            
+            try {
+                const apiKey = document.getElementById('apiKey').value;
+                const headers = {
+                    'X-API-Key': apiKey,
+                    'Content-Type': 'application/json'
+                };
+                
+                const options = {
+                    method: method,
+                    headers: headers,
+                };
+                
+                if (body) {
+                    options.body = JSON.stringify(body);
+                }
+                
+                const response = await fetch(BASE_URL + endpoint, options);
+                const data = await response.json();
+                
+                // Format and display
+                const statusClass = response.status === 200 ? 'status-200' : 
+                                  response.status === 401 ? 'status-401' : 'status-400';
+                
+                let html = `<div class="status-badge ${statusClass}">Status: ${response.status}</div>\n`;
+                html += `<strong>${method} ${endpoint}</strong>\n\n`;
+                html += JSON.stringify(data, null, 2);
+                
+                container.innerHTML = '<pre>' + html + '</pre>';
+                
+            } catch (error) {
+                container.innerHTML = `<pre style="color: #e06c75;">❌ Error: ${error.message}\n\n`;
+                container.innerHTML += 'Hãy chắc chắn:\n';
+                container.innerHTML += '1. Odoo đang chạy tại http://localhost:8069\n';
+                container.innerHTML += '2. Module ke_toan_tai_san đã được upgrade\n';
+                container.innerHTML += '3. CORS được bật (nếu chạy từ file://)</pre>';
+            }
+        }
+        
+        // Auto call API info on load
+        window.onload = () => callAPI('/api/info', 'GET');
+    </script>
+</body>
+</html>

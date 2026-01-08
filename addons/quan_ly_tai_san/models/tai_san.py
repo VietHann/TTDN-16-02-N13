@@ -181,11 +181,13 @@ class TaiSan(models.Model):
         for record in self:
             if record.ngay_mua and record.gia_tien_mua:
                 ngay_mua = record.ngay_mua if isinstance(record.ngay_mua,
-                                                         datetime.datetime) else fields.Date.from_string(
+                                                        datetime.datetime) else fields.Date.from_string(
                     record.ngay_mua)
-                if ngay_mua > fields.Date.today():
+                # Convert to date for comparison
+                ngay_mua_date = ngay_mua.date() if isinstance(ngay_mua, datetime.datetime) else ngay_mua
+                if ngay_mua_date > fields.Date.today():
                     raise ValidationError("Ngày mua không thể lớn hơn ngày hiện tại!")
-                years = relativedelta(fields.Date.today(), ngay_mua.date()).years
+                years = relativedelta(fields.Date.today(), ngay_mua_date).years
                 depreciation_rate = 0.1  # 10% mỗi năm
                 record.gia_tri_hien_tai = max(0, record.gia_tien_mua * (1 - depreciation_rate * years))
             else:

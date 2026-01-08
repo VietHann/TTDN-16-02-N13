@@ -15,3 +15,8 @@ from . import phieu_kiem_ke
 from . import lich_su_kiem_ke
 from . import thanh_ly
 from . import thong_ke
+from . import phieu_nhap_hang
+from . import phong_hop
+from . import dat_phong
+from . import bao_tri_phong_hop
+from . import nang_cap_phong_hop
