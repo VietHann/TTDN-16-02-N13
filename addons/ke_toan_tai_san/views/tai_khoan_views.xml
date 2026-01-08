@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <record id="view_tai_khoan_tree" model="ir.ui.view">
+        <field name="name">ke.toan.tai.khoan.tree</field>
+        <field name="model">ke_toan.tai_khoan</field>
+        <field name="arch" type="xml">
+            <tree string="Danh mục Tài khoản">
+                <field name="ma_tai_khoan"/>
+                <field name="ten_tai_khoan"/>
+                <field name="loai_tai_khoan"/>
+                <field name="tinh_chat"/>
+                <field name="cap_tai_khoan"/>
+                <field name="active" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="view_tai_khoan_form" model="ir.ui.view">
+        <field name="name">ke.toan.tai.khoan.form</field>
+        <field name="model">ke_toan.tai_khoan</field>
+        <field name="arch" type="xml">
+            <form string="Tài khoản">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="ma_tai_khoan"/>
+                            <field name="ten_tai_khoan"/>
+                            <field name="loai_tai_khoan"/>
+                        </group>
+                        <group>
+                            <field name="tinh_chat"/>
+                            <field name="tai_khoan_cap_tren_id"/>
+                            <field name="cap_tai_khoan"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="mo_ta" placeholder="Mô tả tài khoản..."/>
+                    </group>
+                    <group string="Liên kết Odoo">
+                        <field name="account_account_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record id="action_tai_khoan_tree" model="ir.actions.act_window">
+        <field name="name">Danh mục Tài khoản</field>
+        <field name="res_model">ke_toan.tai_khoan</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+</odoo>

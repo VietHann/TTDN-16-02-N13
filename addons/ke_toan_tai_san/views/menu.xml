@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- Menu Root -->
+    <menuitem id="menu_ke_toan_tai_san_root" 
+              name="Kế toán Tài sản"
+              sequence="10"
+              web_icon="ke_toan_tai_san,static/description/icon.png"/>
+    
+    <!-- Menu Cấu hình -->
+    <menuitem id="menu_cau_hinh" 
+              name="Cấu hình"
+              parent="menu_ke_toan_tai_san_root"
+              sequence="10"/>
+    
+    <menuitem id="menu_tai_khoan" 
+              name="Danh mục Tài khoản"
+              parent="menu_cau_hinh"
+              action="action_tai_khoan_tree"
+              sequence="1"/>
+    
+    <menuitem id="menu_cau_hinh_khau_hao" 
+              name="Cấu hình Khấu hao"
+              parent="menu_cau_hinh"
+              action="action_cau_hinh_khau_hao"
+              sequence="2"/>
+    
+    <!-- Menu Kế toán Tài sản -->
+    <menuitem id="menu_ke_toan" 
+              name="Kế toán"
+              parent="menu_ke_toan_tai_san_root"
+              sequence="20"/>
+    
+    <menuitem id="menu_ke_toan_tai_san" 
+              name="Kế toán Tài sản"
+              parent="menu_ke_toan"
+              action="action_ke_toan_tai_san"
+              sequence="1"/>
+    
+    <menuitem id="menu_but_toan_khau_hao" 
+              name="Bút toán Khấu hao"
+              parent="menu_ke_toan"
+              action="action_but_toan_khau_hao"
+              sequence="2"/>
+    
+    <!-- Menu AI -->
+    <menuitem id="menu_ai" 
+              name="AI &amp; Phân tích"
+              parent="menu_ke_toan_tai_san_root"
+              sequence="30"/>
+    
+    <menuitem id="menu_ai_predictor" 
+              name="Dự đoán AI"
+              parent="menu_ai"
+              action="action_ai_predictor"
+              sequence="1"/>
+    
+    <menuitem id="menu_ai_analytics" 
+              name="Phân tích Hiệu quả"
+              parent="menu_ai"
+              action="action_ai_analytics"
+              sequence="2"/>
+    
+</odoo>

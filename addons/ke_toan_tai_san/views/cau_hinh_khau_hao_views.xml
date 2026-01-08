@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <record id="view_cau_hinh_khau_hao_tree" model="ir.ui.view">
+        <field name="name">ke.toan.cau.hinh.khau.hao.tree</field>
+        <field name="model">ke_toan.cau_hinh_khau_hao</field>
+        <field name="arch" type="xml">
+            <tree string="Cấu hình Khấu hao">
+                <field name="loai_tai_san_id"/>
+                <field name="phuong_phap_mac_dinh"/>
+                <field name="thoi_gian_mac_dinh"/>
+                <field name="ty_le_khau_hao_nam"/>
+                <field name="tk_chi_phi_id"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="view_cau_hinh_khau_hao_form" model="ir.ui.view">
+        <field name="name">ke.toan.cau.hinh.khau.hao.form</field>
+        <field name="model">ke_toan.cau_hinh_khau_hao</field>
+        <field name="arch" type="xml">
+            <form string="Cấu hình Khấu hao">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="loai_tai_san_id"/>
+                            <field name="phuong_phap_mac_dinh"/>
+                            <field name="thoi_gian_mac_dinh"/>
+                        </group>
+                        <group>
+                            <field name="ty_le_khau_hao_nam"/>
+                            <field name="ty_le_khau_hao_thang"/>
+                            <field name="gia_tri_thanh_ly_mac_dinh" widget="monetary"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="tk_chi_phi_id"/>
+                            <field name="don_vi_ap_dung_id"/>
+                        </group>
+                        <group>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="mo_ta" placeholder="Mô tả cấu hình..."/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record id="action_cau_hinh_khau_hao" model="ir.actions.act_window">
+        <field name="name">Cấu hình Khấu hao</field>
+        <field name="res_model">ke_toan.cau_hinh_khau_hao</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+</odoo>
