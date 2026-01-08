@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Email template: Thông báo đến hạn trả tài sản -->
+        <record id="email_template_loan_due_reminder" model="mail.template">
+            <field name="name">Thông báo đến hạn trả tài sản</field>
+            <field name="model_id" ref="model_phieu_muon"/>
+            <field name="email_from">${object.create_uid.email or 'system@company.com'}</field>
+            <field name="email_to">${object.nhan_vien_id.email or ''}</field>
+            <field name="subject">Nhắc nhở: Đến hạn trả tài sản ${object.tai_san_id.ten_tai_san}</field>
+            <field name="body_html"><![CDATA[
+<div style="margin: 0px; padding: 0px;">
+    <p>Kính chào ${object.nhan_vien_id.name},</p>
+
+    <p>Bạn đang có phiếu mượn tài sản cần trả trong thời gian tới:</p>
+
+    <div style="border: 1px solid #ddd; padding: 15px; margin: 10px 0; background-color: #f9f9f9;">
+        <h4 style="margin-top: 0; color: #d9534f;">Thông tin phiếu mượn</h4>
+        <p><strong>Mã phiếu:</strong> ${object.ma_phieu_muon}</p>
+        <p><strong>Tài sản:</strong> ${object.tai_san_id.ten_tai_san}</p>
+        <p><strong>Thời gian mượn dự kiến:</strong> ${format_datetime(object.ngay_muon_du_kien, tz=user.tz)}</p>
+        <p><strong>Thời gian trả dự kiến:</strong> ${format_datetime(object.ngay_tra_du_kien, tz=user.tz)}</p>
+        <p><strong>Trạng thái:</strong> ${object.trang_thai_muon}</p>
+    </div>
+
+    <p style="color: #d9534f; font-weight: bold;">
+        Vui lòng trả tài sản đúng hạn để tránh các vấn đề phát sinh.
+    </p>
+
+    <p>Bạn có thể xem chi tiết phiếu mượn tại:
+    <a href="${ctx.get('base_url')}/web#id=${object.id}&model=phieu_muon&view_type=form">
+        ${ctx.get('base_url')}/web#id=${object.id}&model=phieu_muon&view_type=form
+    </a>
+    </p>
+
+    <p>Trân trọng,<br/>
+    Hệ thống quản lý tài sản</p>
+</div>
+            ]]></field>
+            <field name="lang">${object.nhan_vien_id.lang}</field>
+        </record>
+
+        <!-- Email template: Thông báo quá hạn trả tài sản -->
+        <record id="email_template_loan_overdue" model="mail.template">
+            <field name="name">Thông báo quá hạn trả tài sản</field>
+            <field name="model_id" ref="model_phieu_muon"/>
+            <field name="email_from">${object.create_uid.email or 'system@company.com'}</field>
+            <field name="email_to">${object.nhan_vien_id.email or ''}</field>
+            <field name="subject">CẢNH BÁO: Quá hạn trả tài sản ${object.tai_san_id.ten_tai_san}</field>
+            <field name="body_html"><![CDATA[
+<div style="margin: 0px; padding: 0px;">
+    <p>Kính chào ${object.nhan_vien_id.name},</p>
+
+    <p><strong style="color: #d9534f;">CẢNH BÁO: Bạn đã quá hạn trả tài sản!</strong></p>
+
+    <div style="border: 2px solid #d9534f; padding: 15px; margin: 10px 0; background-color: #fff5f5;">
+        <h4 style="margin-top: 0; color: #d9534f;">Thông tin phiếu mượn quá hạn</h4>
+        <p><strong>Mã phiếu:</strong> ${object.ma_phieu_muon}</p>
+        <p><strong>Tài sản:</strong> ${object.tai_san_id.ten_tai_san}</p>
+        <p><strong>Thời gian mượn dự kiến:</strong> ${format_datetime(object.ngay_muon_du_kien, tz=user.tz)}</p>
+        <p><strong>Thời gian trả dự kiến:</strong> ${format_datetime(object.ngay_tra_du_kien, tz=user.tz)}</p>
+        <p><strong>Trạng thái:</strong> ${object.trang_thai_muon}</p>
+        <p><strong>Ngày trả dự kiến:</strong> ${format_datetime(object.ngay_tra_du_kien, tz=user.tz)}</p>
+    </div>
+
+    <p style="color: #d9534f; font-weight: bold;">
+        Vui lòng trả tài sản ngay lập tức để tránh các biện pháp xử lý vi phạm.
+    </p>
+
+    <p>Bạn có thể xem chi tiết phiếu mượn tại:
+    <a href="${ctx.get('base_url')}/web#id=${object.id}&model=phieu_muon&view_type=form">
+        ${ctx.get('base_url')}/web#id=${object.id}&model=phieu_muon&view_type=form
+    </a>
+    </p>
+
+    <p>Trân trọng,<br/>
+    Hệ thống quản lý tài sản</p>
+</div>
+            ]]></field>
+            <field name="lang">${object.nhan_vien_id.lang}</field>
+        </record>
+
+        <!-- Email template: Thông báo thay đổi trạng thái tài sản -->
+        <record id="email_template_asset_status_change" model="mail.template">
+            <field name="name">Thông báo thay đổi trạng thái tài sản</field>
+            <field name="model_id" ref="model_tai_san"/>
+            <field name="email_from">${object.create_uid.email or 'system@company.com'}</field>
+            <field name="email_to">${object.nguoi_dang_dung_id.email or ''}</field>
+            <field name="subject">Thông báo: Trạng thái tài sản ${object.ten_tai_san} đã thay đổi</field>
+            <field name="body_html"><![CDATA[
+<div style="margin: 0px; padding: 0px;">
+    <p>Kính chào ${object.nguoi_dang_dung_id.name or 'Quý khách'},</p>
+
+    <p>Trạng thái của tài sản mà bạn đang sử dụng đã được cập nhật:</p>
+
+    <div style="border: 1px solid #ddd; padding: 15px; margin: 10px 0; background-color: #f9f9f9;">
+        <h4 style="margin-top: 0;">Thông tin tài sản</h4>
+        <p><strong>Mã tài sản:</strong> ${object.ma_tai_san}</p>
+        <p><strong>Tên tài sản:</strong> ${object.ten_tai_san}</p>
+        <p><strong>Loại tài sản:</strong> ${object.loai_tai_san_id.ten_loai_tai_san}</p>
+        <p><strong>Vị trí:</strong> ${object.vi_tri_hien_tai_id.ten_vi_tri}</p>
+        <p><strong>Trạng thái mới:</strong> ${object.trang_thai}</p>
+        <p><strong>Thời gian cập nhật:</strong> ${format_datetime(datetime.datetime.now(), tz=user.tz)}</p>
+    </div>
+
+    <p>Vui lòng kiểm tra và xác nhận thông tin trên.</p>
+
+    <p>Bạn có thể xem chi tiết tài sản tại:
+    <a href="${ctx.get('base_url')}/web#id=${object.id}&model=tai_san&view_type=form">
+        ${ctx.get('base_url')}/web#id=${object.id}&model=tai_san&view_type=form
+    </a>
+    </p>
+
+    <p>Trân trọng,<br/>
+    Hệ thống quản lý tài sản</p>
+</div>
+            ]]></field>
+            <field name="lang">${object.nguoi_dang_dung_id.lang if object.nguoi_dang_dung_id else 'vi_VN'}</field>
+        </record>
+
+    </data>
+</odoo>

@@ -251,3 +251,61 @@ class TaiSan(models.Model):
             'tai_san_hong': len(all_assets.filtered(lambda r: r.trang_thai == 'Hong')),
             'last_updated': fields.Datetime.now(),
         }
+
+    def write(self, vals):
+        """Override write method to send notifications on status changes"""
+        # Track status changes for notifications
+        status_changes = {}
+        if 'trang_thai' in vals:
+            for record in self:
+                old_status = record.trang_thai
+                new_status = vals['trang_thai']
+                if old_status != new_status:
+                    status_changes[record.id] = {
+                        'old_status': old_status,
+                        'new_status': new_status,
+                        'change_time': fields.Datetime.now()
+                    }
+
+        result = super(TaiSan, self).write(vals)
+
+        # Send notifications after successful write
+        if status_changes:
+            for record in self:
+                if record.id in status_changes and record.nguoi_dang_dung_id and record.nguoi_dang_dung_id.email:
+                    try:
+                        template = self.env.ref('quan_ly_tai_san.email_template_asset_status_change')
+                        template.send_mail(record.id, force_send=True)
+                    except Exception as e:
+                        # Log error but don't fail the write operation
+                        _logger = self.env['ir.logging']
+                        _logger.info(f"Failed to send status change notification for asset {record.ma_tai_san}: {str(e)}")
+
+        return result
+
+    @api.model
+    def cron_send_asset_status_notifications(self):
+        """Cron job to send notifications for recent status changes (within last 24 hours)"""
+        from datetime import datetime, timedelta
+
+        # Find assets with status changes in the last 24 hours
+        yesterday = datetime.now() - timedelta(days=1)
+
+        # Since we don't have a direct way to track when status changed,
+        # we'll send notifications for assets that are currently being used
+        # and have been modified recently
+        assets_to_notify = self.search([
+            ('nguoi_dang_dung_id', '!=', False),
+            ('write_date', '>', yesterday),
+            ('trang_thai', 'in', ['Muon', 'BaoTri', 'Hong'])  # Only notify for active status changes
+        ])
+
+        template = self.env.ref('quan_ly_tai_san.email_template_asset_status_change')
+        for asset in assets_to_notify:
+            if asset.nguoi_dang_dung_id.email:
+                try:
+                    template.send_mail(asset.id, force_send=True)
+                except Exception as e:
+                    # Log error but continue with other notifications
+                    _logger = self.env['ir.logging']
+                    _logger.info(f"Failed to send status notification for asset {asset.ma_tai_san}: {str(e)}")

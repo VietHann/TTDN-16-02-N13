@@ -25,6 +25,8 @@
         'security/ir.model.access.csv',
         'sequences.xml',
         'data/sequences.xml',
+        'data/mail_templates.xml',
+        'data/cron_notifications.xml',
         'views/menu_root.xml',
         'views/tai_san.xml',
         'views/phieu_muon.xml',
@@ -56,6 +58,7 @@
     'assets': {
         'web.assets_backend': [
             'quan_ly_tai_san/static/src/css/tai_san.css',
+            'quan_ly_tai_san/static/src/js/simple_signature.js',
         ],
     },
     'installable': True,

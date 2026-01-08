@@ -66,10 +66,10 @@
                                     rows="2"
                                     maxlength="2000"></textarea>
                                 <div class="input-actions">
-                                    <button type="button" id="clear-button" class="btn-action" title="Xóa lịch sử">
+                                    <button type="button" name="clear_history" id="clear-button" class="btn-action" title="Xóa lịch sử">
                                         <i class="fa fa-trash"></i>
                                     </button>
-                                    <button type="button" id="send-button" class="btn-send" title="Gửi tin nhắn">
+                                    <button type="button" name="send_message" id="send-button" class="btn-send" title="Gửi tin nhắn">
                                         <i class="fa fa-paper-plane"></i>
                                     </button>
                                 </div>
@@ -96,7 +96,7 @@
         <field name="view_mode">form</field>
         <field name="view_id" ref="ai_chatbot_interface_form"/>
         <field name="target">new</field>
-        <field name="context">{'default_conversation_id': 'chat_' + str(datetime.now().timestamp())}</field>
+        <field name="context">{'default_conversation_id': 'chat_new'}</field>
     </record>
 
     <!-- Menu -->
