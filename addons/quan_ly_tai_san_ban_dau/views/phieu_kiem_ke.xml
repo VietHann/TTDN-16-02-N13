@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+
+        <record id="view_phieu_kiem_ke_form" model="ir.ui.view">
+            <field name="name">phieu.kiem.ke.form</field>
+            <field name="model">phieu_kiem_ke</field>
+            <field name="arch" type="xml">
+                <form string="Phiếu Kiểm Kê Tài Sản">
+                    <sheet>
+                        <header>
+                            <button name="action_confirm" type="object" string="Xác nhận" states="draft"
+                                    class="oe_highlight"/>
+                            <button name="action_done" type="object" string="Hoàn thành" states="confirmed"
+                                    class="oe_highlight"/>
+                            <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,done"/>
+                        </header>
+
+                        <group>
+                            <group>
+                                <field name="ma_phieu_kiem_ke"/>
+                                <field name="ngay_kiem_ke"/>
+                            </group>
+                            <group>
+                                <field name="trang_thai_thuc_te"/>
+                                <field name="ghi_chu"/>
+                            </group>
+                        </group>
+
+                        <group>
+                            <field name="tai_san_ids" widget="many2many_tags"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_phieu_kiem_ke_tree" model="ir.ui.view">
+            <field name="name">phieu.kiem.ke.tree</field>
+            <field name="model">phieu_kiem_ke</field>
+            <field name="arch" type="xml">
+                <tree string="Danh sách phiếu kiểm kê">
+                    <field name="ma_phieu_kiem_ke"/>
+                    <field name="ngay_kiem_ke"/>
+                    <field name="state"/>
+                    <field name="trang_thai_thuc_te"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_phieu_kiem_ke" model="ir.actions.act_window">
+            <field name="name">Phiếu Kiểm Kê</field>
+            <field name="res_model">phieu_kiem_ke</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_lich_su_su_dung_form" model="ir.ui.view">
+            <field name="name">lich_su_su_dung_form</field>
+            <field name="model">lich_su_su_dung</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="ma_lich_su_su_dung" readonly="1"/>
+                            <field name="ngay_muon" widget="datetime"/>
+                            <field name="ngay_tra" widget="datetime"/>
+                            <field name="nhan_vien_id"/>
+                            <field name="tai_san_id"/>
+                            <field name="ghi_chu"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_lich_su_su_dung_tree" model="ir.ui.view">
+            <field name="name">lich_su_su_dung_tree</field>
+            <field name="model">lich_su_su_dung</field>
+            <field name="arch" type="xml">
+                <tree string="Danh sách lịch sử sử dụng">
+                    <field name="ma_lich_su_su_dung" readonly="1"/>
+                    <field name="ngay_muon"/>
+                    <field name="ngay_tra"/>
+                    <field name="nhan_vien_id"/>
+                    <field name="tai_san_id"/>
+                    <field name="ghi_chu"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="lich_su_su_dung_search" model="ir.ui.view">
+            <field name="name">lich_su_su_dung_search</field>
+            <field name="model">lich_su_su_dung</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="ma_lich_su_su_dung" readonly="1"/>
+                    <field name="ngay_muon"/>
+                    <field name="ngay_tra"/>
+                    <field name="nhan_vien_id"/>
+                    <field name="tai_san_id"/>
+                    <field name="ghi_chu"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_lich_su_su_dung" model="ir.actions.act_window">
+            <field name="name">Lịch sử sử dụng</field>
+            <field name="res_model">lich_su_su_dung</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="lich_su_su_dung_search"/>
+        </record>
+    </data>
+</odoo>

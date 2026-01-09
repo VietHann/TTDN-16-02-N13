@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_nha_cung_cap_form" model="ir.ui.view">
+            <field name="name">nha_cung_cap_form</field>
+            <field name="model">nha_cung_cap</field>
+            <field name="arch" type="xml">
+                <form string="Thông tin nhà cung cấp" class="o_form_full_width">
+                    <sheet class="o_form_sheet_full">
+                        <group class="o_form_group_full">
+                            <group string="Thông tin cơ bản" class="o_2col">
+                                <field name="ma_nha_cung_cap" class="oe_inline" readonly="1" options="{'no_open': True}" />
+                                <field name="ten_nha_cung_cap" placeholder="Nhập tên nhà cung cấp..." required="1" />
+                            </group>
+                            <group string="Liên hệ" class="o_2col">
+                                <field name="ten_nguoi_dai_dien" placeholder="Nhập tên người đại diện..." required="1" />
+                                <field name="so_dien_thoai" placeholder="Nhập số điện thoại..." widget="phone" />
+                                <field name="email" placeholder="Nhập email..." widget="email" />
+                            </group>
+                            <group string="Tài sản liên quan" class="o_group_col_12">
+                                <field name="tai_san_ids" nolabel="1">
+                                    <tree editable="bottom" class="o_list_full_width">
+                                        <field name="ma_tai_san" readonly="1" />
+                                        <field name="ten_tai_san" />
+                                        <field name="trang_thai" widget="badge" options="{'clickable': True, 'class_mapping': {'Muon': 'info', 'Hong': 'danger', 'SanSang': 'success'}}" />
+                                    </tree>
+                                </field>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="view_nha_cung_cap_tree" model="ir.ui.view">
+            <field name="name">nha_cung_cap_tree</field>
+            <field name="model">nha_cung_cap</field>
+            <field name="arch" type="xml">
+                <tree string="Danh sách nhà cung cấp"
+                      class="o_list_full_width"
+                      decoration-muted="tai_san_ids == ''">
+                    <field name="ma_nha_cung_cap" class="oe_inline" />
+                    <field name="ten_nha_cung_cap" class="oe_bold" />
+                    <field name="ten_nguoi_dai_dien" />
+                    <field name="so_dien_thoai" widget="phone" />
+                    <field name="email" widget="email" />
+                    <field name="tai_san_ids" widget="many2many_tags" />
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="nha_cung_cap_search" model="ir.ui.view">
+            <field name="name">nha_cung_cap_search</field>
+            <field name="model">nha_cung_cap</field>
+            <field name="arch" type="xml">
+                <search string="Tìm kiếm nhà cung cấp">
+                    <field name="ma_nha_cung_cap" string="Mã nhà cung cấp" />
+                    <field name="ten_nha_cung_cap" string="Tên nhà cung cấp" />
+                    <field name="ten_nguoi_dai_dien" string="Người đại diện" />
+                    <field name="so_dien_thoai" string="Số điện thoại" />
+                    <field name="email" string="Email" />
+                    <filter string="Không có tài sản" name="khong_tai_san" domain="[('tai_san_ids', '=', False)]" />
+                    <group expand="1" string="Lọc theo">
+                        <filter name="ten_nha_cung_cap" string="Tên nhà cung cấp" context="{'group_by': 'ten_nha_cung_cap'}" />
+                        <filter name="tai_san" string="Tài sản" context="{'group_by': 'tai_san_ids'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+        <record id="action_nha_cung_cap" model="ir.actions.act_window">
+            <field name="name">Nhà cung cấp</field>
+            <field name="res_model">nha_cung_cap</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="nha_cung_cap_search" />
+            <field name="context">{'default_ten_nha_cung_cap': 'Nhà cung cấp mới'}</field>
+        </record>
+    </data>
+</odoo>

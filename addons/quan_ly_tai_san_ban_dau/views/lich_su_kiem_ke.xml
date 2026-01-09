@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_lich_su_kiem_ke_tree" model="ir.ui.view">
+            <field name="name">lich.su.kiem.ke.tree</field>
+            <field name="model">lich_su_kiem_ke</field>
+            <field name="arch" type="xml">
+                <tree string="Lịch Sử Kiểm Kê">
+                    <field name="ma_lich_su_kiem_ke"/>
+                    <field name="ngay_kiem_ke"/>
+                    <field name="phieu_kiem_ke_id"/>
+                    <field name="tai_san_id"/>
+                    <field name="trang_thai_truoc"/>
+                    <field name="trang_thai_sau"/>
+                    <field name="ghi_chu"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_lich_su_kiem_ke_form" model="ir.ui.view">
+            <field name="name">lich.su.kiem.ke.form</field>
+            <field name="model">lich_su_kiem_ke</field>
+            <field name="arch" type="xml">
+                <form string="Lịch Sử Kiểm Kê">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="ma_lich_su_kiem_ke"/>
+                                <field name="ngay_kiem_ke"/>
+                                <field name="phieu_kiem_ke_id"/>
+                                <field name="tai_san_id"/>
+                            </group>
+                            <group>
+                                <field name="trang_thai_truoc"/>
+                                <field name="trang_thai_sau"/>
+                                <field name="ghi_chu"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_lich_su_kiem_ke" model="ir.actions.act_window">
+            <field name="name">Lịch Sử Kiểm Kê</field>
+            <field name="res_model">lich_su_kiem_ke</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Nhấn vào "Tạo mới" để ghi nhận lịch sử kiểm kê tài sản.
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

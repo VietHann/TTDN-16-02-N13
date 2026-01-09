@@ -1,0 +1,17 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_tai_san,tai_san.tai_san,model_tai_san,base.group_user,1,1,1,1
+access_loai_tai_san,loai_tai_san.loai_tai_san,model_loai_tai_san,base.group_user,1,1,1,1
+access_vi_tri,vi_tri.vi_tri,model_vi_tri,base.group_user,1,1,1,1
+access_nha_cung_cap,nha_cung_cap.nha_cung_cap,model_nha_cung_cap,base.group_user,1,1,1,1
+access_lich_su_su_dung,lich_su_su_dung.lich_su_su_dung,model_lich_su_su_dung,base.group_user,1,1,1,1
+access_lich_su_bao_tri,lich_su_bao_tri.lich_su_bao_tri,model_lich_su_bao_tri,base.group_user,1,1,1,1
+access_khau_hao,khau_hao.khau_hao,model_khau_hao,base.group_user,1,1,1,1
+access_phieu_muon,phieu_muon.phieu_muon,model_phieu_muon,base.group_user,1,1,1,1
+access_phieu_bao_tri,phieu_bao_tri.phieu_bao_tri,model_phieu_bao_tri,base.group_user,1,1,1,1
+access_lich_su_di_chuyen,lich_su_di_chuyen.lich_su_di_chuyen,model_lich_su_di_chuyen,base.group_user,1,1,1,1
+access_phieu_dieu_chuyen,phieu_dieu_chuyen.phieu_dieu_chuyen,model_phieu_dieu_chuyen,base.group_user,1,1,1,1
+access_phieu_kiem_ke,phieu_kiem_ke.phieu_kiem_ke,model_phieu_kiem_ke,base.group_user,1,1,1,1
+access_lich_su_kiem_ke,lich_su_kiem_ke.lich_su_kiem_ke,model_lich_su_kiem_ke,base.group_user,1,1,1,1
+access_thanh_ly,thanh_ly.thanh_ly,model_thanh_ly,base.group_user,1,1,1,1
+access_thong_ke,thong_ke.thong_ke,model_thong_ke,base.group_user,1,1,1,1
+

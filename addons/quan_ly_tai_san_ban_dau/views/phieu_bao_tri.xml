@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_phieu_bao_tri_form" model="ir.ui.view">
+            <field name="name">phieu_bao_tri_form</field>
+            <field name="model">phieu_bao_tri</field>
+            <field name="arch" type="xml">
+                <form string="Phiếu bảo trì tài sản">
+                    <header>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,approved,done"/>
+                        <button name="action_approve" string="Duyệt" type="object" states="draft" class="btn-primary"/>
+                        <button name="action_done" string="Hoàn thành" type="object" states="approved" class="btn-success"/>
+                        <button name="action_cancel" string="Hủy" type="object" states="draft,approved" class="btn-danger"/>
+                    </header>
+                    <sheet class="bg-white border rounded shadow-sm">
+                        <field name="ma_phieu_bao_tri" readonly="1"/>
+                        <notebook class="mt-3 border rounded shadow-sm">
+                            <page string="Thông tin bảo trì" class="p-3 bg-light">
+                                <group class="o_form_group">
+                                    <field name="ngay_bao_tri" widget="datetime" placeholder="Chọn ngày bảo trì dự kiến..." required="1"/>
+                                    <field name="ngay_bao_tri_thuc_te" widget="datetime" placeholder="Chọn ngày bảo trì thực tế..." required="0"/>
+                                    <field name="ngay_tra" widget="datetime" placeholder="Chọn ngày trả dự kiến..." required="1"/>
+                                    <field name="ngay_tra_thuc_te" widget="datetime" placeholder="Chọn ngày trả thực tế..." required="0"/>
+                                    <field name="tai_san_id" placeholder="Chọn tài sản..." required="1"/>
+                                    <field name="chi_phi" placeholder="Nhập chi phí bảo trì..." required="1"/>
+                                </group>
+                            </page>
+                            <page string="Ghi chú" class="p-3 bg-light">
+                                <field name="ghi_chu" placeholder="Ghi chú thêm..." widget="textarea"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_phieu_bao_tri_tree" model="ir.ui.view">
+            <field name="name">phieu_bao_tri_tree</field>
+            <field name="model">phieu_bao_tri</field>
+            <field name="arch" type="xml">
+                <tree string="Danh sách phiếu bảo trì">
+                    <field name="ma_phieu_bao_tri"/>
+                    <field name="ngay_bao_tri" widget="datetime"/>
+                    <field name="ngay_tra" widget="datetime"/>
+                    <field name="chi_phi"/>
+                    <field name="tai_san_id"/>
+                    <field name="state"/>
+                    <button name="action_approve" string="Duyệt" type="object" states="draft" class="btn-primary"/>
+                    <button name="action_done" string="Hoàn thành" type="object" states="approved" class="btn-success"/>
+                    <button name="action_cancel" string="Hủy" type="object" states="draft,approved" class="btn-danger"/>
+                    <button name="action_reset_to_draft" string="Quay lại Nháp" type="object" states="cancelled" class="btn-warning"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="phieu_bao_tri_search" model="ir.ui.view">
+            <field name="name">phieu_bao_tri_search</field>
+            <field name="model">phieu_bao_tri</field>
+            <field name="arch" type="xml">
+                <search string="Tìm kiếm phiếu bảo trì">
+                    <field name="ma_phieu_bao_tri"/>
+                    <field name="ngay_bao_tri"/>
+                    <field name="ngay_tra"/>
+                    <field name="chi_phi"/>
+                    <field name="tai_san_id"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_phieu_bao_tri" model="ir.actions.act_window">
+            <field name="name">Phiếu bảo trì</field>
+            <field name="res_model">phieu_bao_tri</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="seq_phieu_bao_tri" model="ir.sequence">
+            <field name="name">Phiếu bảo trì</field>
+            <field name="code">phieu_bao_tri</field>
+            <field name="prefix">PB-</field>
+            <field name="padding">4</field>
+        </record>
+    </data>
+</odoo>
