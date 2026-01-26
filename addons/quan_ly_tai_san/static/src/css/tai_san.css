@@ -1,8 +1,610 @@
-.o_form_full_width {
-    width: 100% !important;
-    padding: 0 !important;
+/* ============================================
+   QUẢN LÝ TÀI SẢN - PREMIUM UI STYLES
+   Modern, Clean & Professional Design
+   ============================================ */
+
+/* ============= COLOR PALETTE ============= */
+:root {
+    /* Primary Colors - Deep Blue Gradient */
+    --qlts-primary-start: #4f46e5;
+    --qlts-primary-end: #7c3aed;
+    --qlts-primary: #5b21b6;
+    --qlts-primary-light: #8b5cf6;
+    --qlts-primary-dark: #4c1d95;
+
+    /* Accent Colors */
+    --qlts-accent: #06b6d4;
+    --qlts-accent-light: #22d3ee;
+
+    /* Status Colors */
+    --qlts-success: #10b981;
+    --qlts-success-light: #d1fae5;
+    --qlts-warning: #f59e0b;
+    --qlts-warning-light: #fef3c7;
+    --qlts-danger: #ef4444;
+    --qlts-danger-light: #fee2e2;
+    --qlts-info: #3b82f6;
+    --qlts-info-light: #dbeafe;
+
+    /* Neutral Colors */
+    --qlts-gray-50: #f9fafb;
+    --qlts-gray-100: #f3f4f6;
+    --qlts-gray-200: #e5e7eb;
+    --qlts-gray-300: #d1d5db;
+    --qlts-gray-400: #9ca3af;
+    --qlts-gray-500: #6b7280;
+    --qlts-gray-600: #4b5563;
+    --qlts-gray-700: #374151;
+    --qlts-gray-800: #1f2937;
+    --qlts-gray-900: #111827;
+
+    /* Shadows */
+    --qlts-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --qlts-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --qlts-shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --qlts-shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --qlts-shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+    /* Border Radius */
+    --qlts-radius-sm: 6px;
+    --qlts-radius: 10px;
+    --qlts-radius-lg: 16px;
+    --qlts-radius-xl: 24px;
+
+    /* Transitions */
+    --qlts-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --qlts-transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.o_form_sheet_full, .o_form_group_full, .o_notebook_full, .o_list_full_width, .o_search_group_full, .o_searchpanel_full {
-    max-width: 100% !important;
+
+/* ============= GLOBAL ENHANCEMENTS ============= */
+
+/* Form View Container */
+.o_form_view.o_form_editable .o_form_sheet,
+.o_form_view.o_form_readonly .o_form_sheet {
+    background: linear-gradient(135deg, var(--qlts-gray-50) 0%, #ffffff 100%);
+    border-radius: var(--qlts-radius-lg);
+    box-shadow: var(--qlts-shadow-md);
+    padding: 28px !important;
+    margin: 16px;
+    border: 1px solid var(--qlts-gray-200);
+}
+
+/* Enhanced Form Header */
+.o_form_view .o_form_statusbar {
+    background: linear-gradient(135deg, var(--qlts-primary-start) 0%, var(--qlts-primary-end) 100%);
+    padding: 16px 24px !important;
+    border-radius: var(--qlts-radius-lg) var(--qlts-radius-lg) 0 0;
+    margin: -28px -28px 24px -28px;
+    border: none;
+}
+
+.o_form_view .o_form_statusbar .o_statusbar_status>.o_arrow_button {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    font-weight: 600;
+    padding: 8px 20px;
+    border-radius: 50px;
+    transition: var(--qlts-transition);
+    margin: 0 4px;
+}
+
+.o_form_view .o_form_statusbar .o_statusbar_status>.o_arrow_button:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+.o_form_view .o_form_statusbar .o_statusbar_status>.o_arrow_button.o_arrow_button_current {
+    background: white;
+    color: var(--qlts-primary);
+    box-shadow: var(--qlts-shadow);
+}
+
+/* Form Groups - Only style outer groups, preserve inner group layout */
+.o_form_view>.o_form_sheet>.o_group,
+.o_form_view .o_notebook .o_group:not(.o_inner_group) {
+    background: white;
+    border-radius: var(--qlts-radius);
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: var(--qlts-shadow-sm);
+    border: 1px solid var(--qlts-gray-200);
+    transition: var(--qlts-transition);
+}
+
+.o_form_view>.o_form_sheet>.o_group:hover,
+.o_form_view .o_notebook .o_group:not(.o_inner_group):hover {
+    box-shadow: var(--qlts-shadow);
+    border-color: var(--qlts-primary-light);
+}
+
+/* Preserve inner group default styles */
+.o_form_view .o_inner_group {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
     margin: 0 !important;
+}
+
+/* Group Titles */
+.o_form_view .o_group>tbody>tr>td.o_td_label,
+.o_form_view .o_inner_group>tbody>tr>td.o_td_label {
+    font-weight: 600;
+    color: var(--qlts-gray-700);
+    padding: 12px 16px 12px 0;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+}
+
+/* Input Fields */
+.o_form_view .o_field_widget input,
+.o_form_view .o_field_widget textarea,
+.o_form_view .o_field_widget select {
+    border: 2px solid var(--qlts-gray-200);
+    border-radius: var(--qlts-radius-sm);
+    padding: 10px 14px;
+    font-size: 14px;
+    transition: var(--qlts-transition);
+    background: white;
+}
+
+.o_form_view .o_field_widget input:focus,
+.o_form_view .o_field_widget textarea:focus,
+.o_form_view .o_field_widget select:focus {
+    border-color: var(--qlts-primary);
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+    outline: none;
+}
+
+.o_form_view .o_field_widget input:hover,
+.o_form_view .o_field_widget textarea:hover {
+    border-color: var(--qlts-gray-400);
+}
+
+/* ============= NOTEBOOK TABS ============= */
+.o_form_view .o_notebook {
+    margin-top: 24px;
+}
+
+.o_form_view .o_notebook>.nav-tabs {
+    border-bottom: 2px solid var(--qlts-gray-200);
+    padding-bottom: 0;
+    margin-bottom: 20px;
+    gap: 8px;
+}
+
+.o_form_view .o_notebook>.nav-tabs>.nav-item>.nav-link {
+    background: transparent;
+    border: none;
+    color: var(--qlts-gray-500);
+    padding: 12px 24px;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: var(--qlts-radius-sm) var(--qlts-radius-sm) 0 0;
+    position: relative;
+    transition: var(--qlts-transition);
+}
+
+.o_form_view .o_notebook>.nav-tabs>.nav-item>.nav-link:hover {
+    color: var(--qlts-primary);
+    background: var(--qlts-gray-100);
+}
+
+.o_form_view .o_notebook>.nav-tabs>.nav-item>.nav-link.active {
+    color: var(--qlts-primary);
+    background: linear-gradient(to bottom, var(--qlts-gray-100), transparent);
+}
+
+.o_form_view .o_notebook>.nav-tabs>.nav-item>.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--qlts-primary-start), var(--qlts-primary-end));
+    border-radius: 3px 3px 0 0;
+}
+
+/* Tab Content */
+.o_form_view .o_notebook>.tab-content {
+    background: white;
+    border-radius: var(--qlts-radius);
+    padding: 20px;
+    box-shadow: var(--qlts-shadow-sm);
+    border: 1px solid var(--qlts-gray-200);
+}
+
+/* ============= BUTTONS ============= */
+.o_form_view .btn-primary,
+.o_list_view .btn-primary,
+.modal .btn-primary {
+    background: linear-gradient(135deg, var(--qlts-primary-start) 0%, var(--qlts-primary-end) 100%);
+    border: none;
+    border-radius: var(--qlts-radius-sm);
+    padding: 10px 24px;
+    font-weight: 600;
+    box-shadow: var(--qlts-shadow-sm);
+    transition: var(--qlts-transition);
+    letter-spacing: 0.02em;
+}
+
+.o_form_view .btn-primary:hover,
+.o_list_view .btn-primary:hover,
+.modal .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--qlts-shadow-md), 0 0 20px rgba(79, 70, 229, 0.3);
+}
+
+.o_form_view .btn-secondary,
+.o_list_view .btn-secondary {
+    background: white;
+    border: 2px solid var(--qlts-gray-300);
+    color: var(--qlts-gray-700);
+    border-radius: var(--qlts-radius-sm);
+    padding: 10px 24px;
+    font-weight: 600;
+    transition: var(--qlts-transition);
+}
+
+.o_form_view .btn-secondary:hover,
+.o_list_view .btn-secondary:hover {
+    background: var(--qlts-gray-100);
+    border-color: var(--qlts-gray-400);
+    transform: translateY(-1px);
+}
+
+/* Button Box */
+.o_form_view .oe_button_box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 16px;
+    background: linear-gradient(135deg, var(--qlts-gray-50) 0%, white 100%);
+    border-radius: var(--qlts-radius);
+    margin-bottom: 20px;
+    border: 1px solid var(--qlts-gray-200);
+}
+
+.o_form_view .oe_button_box .oe_stat_button {
+    background: white;
+    border: 1px solid var(--qlts-gray-200);
+    border-radius: var(--qlts-radius-sm);
+    padding: 12px 16px;
+    transition: var(--qlts-transition);
+    min-width: 140px;
+}
+
+.o_form_view .oe_button_box .oe_stat_button:hover {
+    border-color: var(--qlts-primary);
+    box-shadow: var(--qlts-shadow);
+    transform: translateY(-2px);
+}
+
+/* ============= LIST/TREE VIEW ============= */
+.o_list_view {
+    background: white;
+    border-radius: var(--qlts-radius-lg);
+    box-shadow: var(--qlts-shadow);
+    overflow: hidden;
+    margin: 16px;
+    border: 1px solid var(--qlts-gray-200);
+}
+
+.o_list_view .o_list_table {
+    border: none;
+}
+
+.o_list_view .o_list_table thead th {
+    background: linear-gradient(135deg, var(--qlts-gray-100) 0%, var(--qlts-gray-50) 100%);
+    color: var(--qlts-gray-700);
+    font-weight: 700;
+    padding: 16px;
+    border-bottom: 2px solid var(--qlts-gray-200);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.o_list_view .o_list_table tbody tr {
+    transition: var(--qlts-transition-fast);
+}
+
+.o_list_view .o_list_table tbody tr:hover {
+    background: linear-gradient(90deg, rgba(79, 70, 229, 0.05), rgba(124, 58, 237, 0.05)) !important;
+}
+
+.o_list_view .o_list_table tbody td {
+    padding: 14px 16px;
+    color: var(--qlts-gray-700);
+    border-bottom: 1px solid var(--qlts-gray-100);
+    vertical-align: middle;
+}
+
+/* Alternating Rows */
+.o_list_view .o_list_table tbody tr:nth-child(even) {
+    background: var(--qlts-gray-50);
+}
+
+/* ============= KANBAN VIEW ============= */
+.o_kanban_view {
+    background: var(--qlts-gray-100);
+    padding: 20px;
+}
+
+.o_kanban_view .o_kanban_record {
+    background: white;
+    border-radius: var(--qlts-radius);
+    box-shadow: var(--qlts-shadow);
+    border: 1px solid var(--qlts-gray-200);
+    transition: var(--qlts-transition);
+    overflow: hidden;
+}
+
+.o_kanban_view .o_kanban_record:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--qlts-shadow-lg);
+    border-color: var(--qlts-primary-light);
+}
+
+.o_kanban_view .o_kanban_group_header {
+    background: linear-gradient(135deg, var(--qlts-primary-start) 0%, var(--qlts-primary-end) 100%);
+    color: white;
+    border-radius: var(--qlts-radius) var(--qlts-radius) 0 0;
+    padding: 16px;
+    font-weight: 700;
+}
+
+/* ============= BADGES & STATUS ============= */
+.badge {
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.025em;
+}
+
+.badge-success,
+.bg-success-light {
+    background: var(--qlts-success-light) !important;
+    color: var(--qlts-success) !important;
+}
+
+.badge-warning,
+.bg-warning-light {
+    background: var(--qlts-warning-light) !important;
+    color: var(--qlts-warning) !important;
+}
+
+.badge-danger,
+.bg-danger-light {
+    background: var(--qlts-danger-light) !important;
+    color: var(--qlts-danger) !important;
+}
+
+.badge-info,
+.bg-info-light {
+    background: var(--qlts-info-light) !important;
+    color: var(--qlts-info) !important;
+}
+
+/* Widget Status Bar in List */
+.o_field_badge {
+    display: inline-flex;
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* ============= MANY2ONE DROPDOWN ============= */
+.o_field_many2one .o_field_widget {
+    border-radius: var(--qlts-radius-sm);
+}
+
+.o_field_many2one_selection .dropdown-menu {
+    border-radius: var(--qlts-radius);
+    box-shadow: var(--qlts-shadow-lg);
+    border: 1px solid var(--qlts-gray-200);
+    padding: 8px;
+}
+
+.o_field_many2one_selection .dropdown-item {
+    border-radius: var(--qlts-radius-sm);
+    padding: 10px 16px;
+    transition: var(--qlts-transition-fast);
+}
+
+.o_field_many2one_selection .dropdown-item:hover {
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(124, 58, 237, 0.1));
+}
+
+/* ============= MODALS ============= */
+.modal-content {
+    border-radius: var(--qlts-radius-lg);
+    box-shadow: var(--qlts-shadow-xl);
+    border: none;
+    overflow: hidden;
+}
+
+.modal-header {
+    background: linear-gradient(135deg, var(--qlts-primary-start) 0%, var(--qlts-primary-end) 100%);
+    color: white;
+    border-bottom: none;
+    padding: 20px 24px;
+}
+
+.modal-header .modal-title {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.modal-header .btn-close {
+    filter: invert(1);
+    opacity: 0.8;
+}
+
+.modal-body {
+    padding: 24px;
+    background: var(--qlts-gray-50);
+}
+
+.modal-footer {
+    padding: 16px 24px;
+    border-top: 1px solid var(--qlts-gray-200);
+    background: white;
+}
+
+/* ============= SEARCH BAR ============= */
+.o_searchview {
+    border-radius: var(--qlts-radius);
+    box-shadow: var(--qlts-shadow-sm);
+    border: 2px solid var(--qlts-gray-200);
+    overflow: hidden;
+    transition: var(--qlts-transition);
+}
+
+.o_searchview:focus-within {
+    border-color: var(--qlts-primary);
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+}
+
+.o_searchview .o_searchview_input {
+    padding: 12px 16px;
+}
+
+/* ============= CALENDAR VIEW ============= */
+.o_calendar_view {
+    background: white;
+    border-radius: var(--qlts-radius-lg);
+    box-shadow: var(--qlts-shadow);
+    margin: 16px;
+    overflow: hidden;
+}
+
+.fc-event {
+    background: linear-gradient(135deg, var(--qlts-primary-start) 0%, var(--qlts-primary-end) 100%) !important;
+    border: none !important;
+    border-radius: var(--qlts-radius-sm) !important;
+    padding: 4px 8px !important;
+}
+
+/* ============= PIVOT/GRAPH ============= */
+.o_pivot,
+.o_graph {
+    background: white;
+    border-radius: var(--qlts-radius-lg);
+    box-shadow: var(--qlts-shadow);
+    margin: 16px;
+    padding: 20px;
+}
+
+/* ============= CHATTER ============= */
+.o_Chatter {
+    background: var(--qlts-gray-50);
+    border-radius: var(--qlts-radius);
+    padding: 16px;
+    margin-top: 20px;
+}
+
+.o_Message {
+    background: white;
+    border-radius: var(--qlts-radius);
+    box-shadow: var(--qlts-shadow-sm);
+    margin-bottom: 12px;
+}
+
+/* ============= ANIMATIONS ============= */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+}
+
+.o_form_view .o_form_sheet {
+    animation: fadeInUp 0.4s ease-out;
+}
+
+.o_list_view {
+    animation: fadeInUp 0.3s ease-out;
+}
+
+/* Loading States */
+.o_loading {
+    animation: pulse 1.5s infinite;
+}
+
+/* ============= RESPONSIVE ============= */
+@media (max-width: 768px) {
+    .o_form_view .o_form_sheet {
+        margin: 8px;
+        padding: 16px !important;
+    }
+
+    .o_list_view {
+        margin: 8px;
+        border-radius: var(--qlts-radius);
+    }
+
+    .o_form_view .o_notebook>.nav-tabs>.nav-item>.nav-link {
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+}
+
+/* ============= SPECIAL FIELD STYLES ============= */
+/* Monetary Fields */
+.o_field_monetary {
+    font-weight: 600;
+    color: var(--qlts-primary-dark);
+}
+
+/* Date Fields */
+.o_field_date,
+.o_field_datetime {
+    font-feature-settings: "tnum";
+}
+
+/* Image Preview */
+.o_field_image img {
+    border-radius: var(--qlts-radius);
+    box-shadow: var(--qlts-shadow);
+}
+
+/* Signature Widget Enhancement */
+.signature-widget {
+    background: linear-gradient(135deg, var(--qlts-gray-50) 0%, white 100%);
+    border: 2px solid var(--qlts-gray-200);
+    border-radius: var(--qlts-radius);
+    padding: 20px;
+    transition: var(--qlts-transition);
+}
+
+.signature-widget:hover {
+    border-color: var(--qlts-primary-light);
+    box-shadow: var(--qlts-shadow);
+}
+
+#signature-canvas {
+    border-radius: var(--qlts-radius-sm);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
 }

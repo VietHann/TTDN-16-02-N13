@@ -42,4 +42,9 @@
         'demo/demo.xml',
         'demo/demo_data.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'nhan_su/static/src/css/nhan_su.css',
+        ],
+    },
 }

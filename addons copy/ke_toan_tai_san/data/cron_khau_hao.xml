@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        
+        <!-- Cron Job: Khấu hao tự động hàng tháng -->
+        <record id="ir_cron_khau_hao_tu_dong" model="ir.cron">
+            <field name="name">Khấu hao tài sản tự động hàng tháng</field>
+            <field name="model_id" ref="model_ke_toan_tai_san"/>
+            <field name="state">code</field>
+            <field name="code">model.cron_khau_hao_tu_dong()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">months</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="active" eval="True"/>
+            <!-- Chạy vào ngày 1 hàng tháng lúc 00:00 -->
+            <field name="nextcall" eval="(DateTime.now() + relativedelta(months=1, day=1, hour=0, minute=0, second=0)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="priority">10</field>
+        </record>
+        
+        <!-- Cron Job: Cập nhật dự đoán AI hàng tuần -->
+        <record id="ir_cron_ai_predictions" model="ir.cron">
+            <field name="name">Cập nhật dự đoán AI hàng tuần</field>
+            <field name="model_id" ref="model_ai_tai_san_predictor"/>
+            <field name="state">code</field>
+            <field name="code">model.cron_update_all_predictions()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">weeks</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="active" eval="False"/>
+            <!-- Chạy vào Chủ nhật lúc 02:00 (disable mặc định, bật thủ công) -->
+            <field name="nextcall" eval="(DateTime.now() + relativedelta(weeks=1, hour=2, minute=0, second=0)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="priority">20</field>
+        </record>
+        
+    </data>
+</odoo>

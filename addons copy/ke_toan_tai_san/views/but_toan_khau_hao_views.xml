@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <record id="view_but_toan_khau_hao_tree" model="ir.ui.view">
+        <field name="name">ke.toan.but.toan.khau.hao.tree</field>
+        <field name="model">ke_toan.but_toan_khau_hao</field>
+        <field name="arch" type="xml">
+            <tree string="Bút toán Khấu hao" decoration-success="state=='posted'" decoration-muted="state=='cancelled'">
+                <field name="ma_but_toan"/>
+                <field name="ngay_ghi_nhan"/>
+                <field name="tai_san_id"/>
+                <field name="tk_no_id"/>
+                <field name="tk_co_id"/>
+                <field name="so_tien" sum="Tổng" widget="monetary"/>
+                <field name="don_vi_id"/>
+                <field name="state" widget="badge" decoration-success="state=='posted'" decoration-info="state=='draft'"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="view_but_toan_khau_hao_form" model="ir.ui.view">
+        <field name="name">ke.toan.but.toan.khau.hao.form</field>
+        <field name="model">ke_toan.but_toan_khau_hao</field>
+        <field name="arch" type="xml">
+            <form string="Bút toán Khấu hao">
+                <header>
+                    <button name="action_post" string="Đăng bút toán" type="object" 
+                            class="oe_highlight" states="draft"/>
+                    <button name="action_cancel" string="Hủy" type="object" 
+                            states="draft,posted" confirm="Bạn có chắc muốn hủy bút toán này?"/>
+                    <button name="action_view_account_move" string="Xem Bút toán Odoo" 
+                            type="object" class="btn-secondary" attrs="{'invisible': [('account_move_id', '=', False)]}"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,posted"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="ma_but_toan" readonly="1"/>
+                            <field name="ngay_ghi_nhan"/>
+                            <field name="ke_toan_tai_san_id"/>
+                            <field name="tai_san_id"/>
+                            <field name="khau_hao_id"/>
+                        </group>
+                        <group>
+                            <field name="tk_no_id"/>
+                            <field name="tk_co_id"/>
+                            <field name="so_tien" widget="monetary"/>
+                            <field name="don_vi_id"/>
+                            <field name="journal_id"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="dien_giai" placeholder="Diễn giải bút toán..."/>
+                    </group>
+                    <group string="Liên kết">
+                        <field name="account_move_id" readonly="1"/>
+                        <field name="company_id" groups="base.group_multi_company"/>
+                    </group>
+                    <group>
+                        <field name="ghi_chu" placeholder="Ghi chú..."/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    
+    <record id="action_but_toan_khau_hao" model="ir.actions.act_window">
+        <field name="name">Bút toán Khấu hao</field>
+        <field name="res_model">ke_toan.but_toan_khau_hao</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_group_thang': 1}</field>
+    </record>
+    
+</odoo>

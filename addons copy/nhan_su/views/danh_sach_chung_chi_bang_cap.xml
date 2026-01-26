@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_danh_sach_chung_chi_bang_cap_form" model="ir.ui.view">
+            <field name="name">danh_sach_chung_chi_bang_cap</field>
+            <field name="model">danh_sach_chung_chi_bang_cap</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_read_only" style="font-size:25px">Danh sách chứng chỉ, bằng cấp</div>
+                        <group col="4" string="Thông tin chung">
+                            <field name="nhan_vien_id"/>
+                            <field name="ma_dinh_danh"/>
+                            <field name="chung_chi_bang_cap_id"/>
+                            <field name="ghi_chu"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_danh_sach_chung_chi_bang_cap_tree" model="ir.ui.view">
+            <field name="name">danh_sach_chung_chi_bang_cap</field>
+            <field name="model">danh_sach_chung_chi_bang_cap</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="nhan_vien_id"/>
+                    <field name="ma_dinh_danh"/>
+                    <field name="chung_chi_bang_cap_id"/>
+                    <field name="ghi_chu"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="danh_sach_chung_chi_bang_cap_search">
+            <field name="model">danh_sach_chung_chi_bang_cap</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="nhan_vien_id"/>
+                    <field name="ma_dinh_danh"/>
+                    <field name="chung_chi_bang_cap_id"/>
+                    <field name="ghi_chu"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_danh_sach_chung_chi_bang_cap" model="ir.actions.act_window">
+            <field name="name">Danh sách chứng chỉ bằng cấp</field>
+            <field name="res_model">danh_sach_chung_chi_bang_cap</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref = "danh_sach_chung_chi_bang_cap_search"/>
+        </record>
+    </data>
+</odoo>
+        
+    

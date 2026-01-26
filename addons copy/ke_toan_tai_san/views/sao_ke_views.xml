@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_sao_ke_tree" model="ir.ui.view">
+        <field name="name">ke.toan.sao.ke.tree</field>
+        <field name="model">ke_toan.sao_ke</field>
+        <field name="arch" type="xml">
+            <tree string="Sao kê">
+                <field name="ten_sao_ke"/>
+                <field name="tai_khoan_id"/>
+                <field name="ngay_bat_dau"/>
+                <field name="ngay_ket_thuc"/>
+                <field name="tong_phat_sinh_no" widget="monetary"/>
+                <field name="tong_phat_sinh_co" widget="monetary"/>
+                <field name="so_du_cuoi_ky_no" widget="monetary"/>
+                <field name="so_du_cuoi_ky_co" widget="monetary"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_sao_ke_form" model="ir.ui.view">
+        <field name="name">ke.toan.sao.ke.form</field>
+        <field name="model">ke_toan.sao_ke</field>
+        <field name="arch" type="xml">
+            <form string="Sao kê">
+                <header>
+                    <button name="action_lay_du_lieu" string="Lấy dữ liệu" type="object" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="ten_sao_ke"/>
+                            <field name="tai_khoan_id"/>
+                            <field name="don_vi_id"/>
+                        </group>
+                        <group>
+                            <field name="ngay_bat_dau"/>
+                            <field name="ngay_ket_thuc"/>
+                            <field name="nguoi_tao_id" readonly="1"/>
+                            <field name="ngay_tao" readonly="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Số dư đầu kỳ">
+                            <field name="so_du_dau_ky_no" widget="monetary"/>
+                            <field name="so_du_dau_ky_co" widget="monetary"/>
+                        </group>
+                        <group string="Phát sinh trong kỳ">
+                            <field name="tong_phat_sinh_no" widget="monetary"/>
+                            <field name="tong_phat_sinh_co" widget="monetary"/>
+                        </group>
+                        <group string="Số dư cuối kỳ">
+                            <field name="so_du_cuoi_ky_no" widget="monetary"/>
+                            <field name="so_du_cuoi_ky_co" widget="monetary"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Chi tiết giao dịch">
+                            <field name="chi_tiet_ids">
+                                <tree>
+                                    <field name="ngay_giao_dich"/>
+                                    <field name="dien_giai"/>
+                                    <field name="so_tien_no" widget="monetary"/>
+                                    <field name="so_tien_co" widget="monetary"/>
+                                    <field name="so_du_no" widget="monetary"/>
+                                    <field name="so_du_co" widget="monetary"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Ghi chú">
+                            <field name="ghi_chu"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sao_ke" model="ir.actions.act_window">
+        <field name="name">Sao kê</field>
+        <field name="res_model">ke_toan.sao_ke</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu will be added in menu.xml -->
+</odoo>

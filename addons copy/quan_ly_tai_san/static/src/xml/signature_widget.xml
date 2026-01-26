@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="SignatureField" name="Signature Field">
+        <div class="signature-widget">
+            <div class="signature-header">
+                <h6>Ký xác nhận trả tài sản</h6>
+                <div class="signature-actions">
+                    <button type="button" class="btn btn-sm btn-secondary signature-clear">Xóa</button>
+                    <button type="button" class="btn btn-sm btn-primary signature-save">Lưu chữ ký</button>
+                </div>
+            </div>
+            <div class="signature-canvas-container">
+                <canvas id="signature-canvas" width="400" height="200" style="border: 1px solid #ccc;"></canvas>
+            </div>
+            <div class="signature-info">
+                <small class="text-muted">Vui lòng ký tên vào khung trên để xác nhận trả tài sản</small>
+            </div>
+        </div>
+    </template>
+</odoo>

@@ -69,6 +69,7 @@
     'assets': {
         'web.assets_backend': [
             'ke_toan_tai_san/static/src/css/ai_chatbot.css',
+            'ke_toan_tai_san/static/src/css/ke_toan.css',
             'ke_toan_tai_san/static/src/js/ai_chatbot.js',
         ],
     },

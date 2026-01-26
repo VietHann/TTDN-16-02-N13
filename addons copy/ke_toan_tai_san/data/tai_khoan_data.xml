@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        
+        <!-- Tài khoản 211: Tài sản cố định hữu hình -->
+        <record id="tai_khoan_211" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">211</field>
+            <field name="ten_tai_khoan">Tài sản cố định hữu hình</field>
+            <field name="loai_tai_khoan">tai_san</field>
+            <field name="tinh_chat">no</field>
+            <field name="mo_ta">Tài khoản này dùng để phản ánh nguyên giá của TSCĐ hữu hình</field>
+        </record>
+        
+        <!-- Tài khoản 214: Hao mòn TSCĐ hữu hình -->
+        <record id="tai_khoan_214" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">214</field>
+            <field name="ten_tai_khoan">Hao mòn tài sản cố định hữu hình</field>
+            <field name="loai_tai_khoan">tai_san</field>
+            <field name="tinh_chat">co</field>
+            <field name="mo_ta">Tài khoản này phản ánh giá trị hao mòn lũy kế của TSCĐ hữu hình</field>
+        </record>
+        
+        <!-- Tài khoản 627: Chi phí sản xuất chung -->
+        <record id="tai_khoan_627" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">627</field>
+            <field name="ten_tai_khoan">Chi phí sản xuất chung</field>
+            <field name="loai_tai_khoan">chi_phi</field>
+            <field name="tinh_chat">no</field>
+            <field name="mo_ta">Chi phí khấu hao TSCĐ phục vụ sản xuất</field>
+        </record>
+        
+        <!-- Tài khoản 642: Chi phí quản lý doanh nghiệp -->
+        <record id="tai_khoan_642" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">642</field>
+            <field name="ten_tai_khoan">Chi phí quản lý doanh nghiệp</field>
+            <field name="loai_tai_khoan">chi_phi</field>
+            <field name="tinh_chat">no</field>
+            <field name="mo_ta">Chi phí khấu hao TSCĐ phục vụ quản lý</field>
+        </record>
+        
+        <!-- Tài khoản 111: Tiền mặt -->
+        <record id="tai_khoan_111" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">111</field>
+            <field name="ten_tai_khoan">Tiền mặt</field>
+            <field name="loai_tai_khoan">tai_san</field>
+            <field name="tinh_chat">no</field>
+        </record>
+        
+        <!-- Tài khoản 112: Tiền gửi ngân hàng -->
+        <record id="tai_khoan_112" model="ke_toan.tai_khoan">
+            <field name="ma_tai_khoan">112</field>
+            <field name="ten_tai_khoan">Tiền gửi ngân hàng</field>
+            <field name="loai_tai_khoan">tai_san</field>
+            <field name="tinh_chat">no</field>
+        </record>
+        
+        <!-- Sequence cho mã bút toán -->
+        <record id="seq_but_toan_khau_hao" model="ir.sequence">
+            <field name="name">Bút toán khấu hao</field>
+            <field name="code">ke_toan.but_toan_khau_hao</field>
+            <field name="prefix">BTKH-</field>
+            <field name="padding">5</field>
+            <field name="number_increment">1</field>
+        </record>
+        
+    </data>
+</odoo>

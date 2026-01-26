@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <record id="view_ai_predictor_tree" model="ir.ui.view">
+        <field name="name">ai.tai.san.predictor.tree</field>
+        <field name="model">ai.tai_san.predictor</field>
+        <field name="arch" type="xml">
+            <tree string="Dự đoán AI" decoration-danger="de_xuat_thanh_ly==True" decoration-warning="xac_suat_hong&gt;60">
+                <field name="ma_tai_san"/>
+                <field name="ten_tai_san"/>
+                <field name="tuoi_tai_san"/>
+                <field name="so_lan_bao_tri"/>
+                <field name="ngay_bao_tri_du_kien"/>
+                <field name="xac_suat_hong" widget="progressbar"/>
+                <field name="do_uu_tien" widget="badge" decoration-danger="do_uu_tien=='khan_cap'" decoration-warning="do_uu_tien=='cao'"/>
+                <field name="de_xuat_thanh_ly" widget="boolean_toggle"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="view_ai_predictor_form" model="ir.ui.view">
+        <field name="name">ai.tai.san.predictor.form</field>
+        <field name="model">ai.tai_san.predictor</field>
+        <field name="arch" type="xml">
+            <form string="Dự đoán AI">
+                <header>
+                    <button name="action_update_predictions" string="Cập nhật Dự đoán" type="object" class="oe_highlight"/>
+                    <field name="do_uu_tien" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Đề xuất Thanh lý" bg_color="bg-danger" 
+                            attrs="{'invisible': [('de_xuat_thanh_ly', '=', False)]}"/>
+                    
+                    <group>
+                        <group string="Tài sản">
+                            <field name="tai_san_id"/>
+                            <field name="ma_tai_san"/>
+                            <field name="ten_tai_san"/>
+                        </group>
+                        <group string="Dự đoán">
+                            <field name="ngay_bao_tri_du_kien"/>
+                            <field name="xac_suat_hong" widget="progressbar"/>
+                            <field name="de_xuat_thanh_ly"/>
+                            <field name="ngay_cap_nhat"/>
+                        </group>
+                    </group>
+                    
+                    <notebook>
+                        <page string="Đặc trưng (Features)">
+                            <group>
+                                <group>
+                                    <field name="tuoi_tai_san"/>
+                                    <field name="so_lan_bao_tri"/>
+                                    <field name="tong_chi_phi_bao_tri" widget="monetary"/>
+                                    <field name="ty_le_chi_phi_bao_tri"/>
+                                </group>
+                                <group>
+                                    <field name="ty_le_khau_hao"/>
+                                    <field name="tan_suat_su_dung"/>
+                                    <field name="so_lan_hong"/>
+                                    <field name="khoang_cach_bao_tri_tb"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Lý do Đề xuất">
+                            <field name="ly_do_de_xuat" widget="text"/>
+                        </page>
+                        <page string="Model Info">
+                            <group>
+                                <field name="model_version"/>
+                                <field name="phuong_phap"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record id="view_ai_predictor_search" model="ir.ui.view">
+        <field name="name">ai.tai.san.predictor.search</field>
+        <field name="model">ai.tai_san.predictor</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="ten_tai_san"/>
+                <filter string="Đề xuất thanh lý" name="de_xuat_thanh_ly" domain="[('de_xuat_thanh_ly', '=', True)]"/>
+                <filter string="Xác suất cao" name="xac_suat_cao" domain="[('xac_suat_hong', '&gt;', 60)]"/>
+                <filter string="Khẩn cấp" name="khan_cap" domain="[('do_uu_tien', '=', 'khan_cap')]"/>
+            </search>
+        </field>
+    </record>
+    
+    <record id="action_ai_predictor" model="ir.actions.act_window">
+        <field name="name">Dự đoán AI</field>
+        <field name="res_model">ai.tai_san.predictor</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_xac_suat_cao': 1}</field>
+    </record>
+    
+</odoo>

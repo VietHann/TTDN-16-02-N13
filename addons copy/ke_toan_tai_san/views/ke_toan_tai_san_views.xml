@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- Tree View -->
+    <record id="view_ke_toan_tai_san_tree" model="ir.ui.view">
+        <field name="name">ke.toan.tai.san.tree</field>
+        <field name="model">ke_toan.tai_san</field>
+        <field name="arch" type="xml">
+            <tree string="Kế toán Tài sản" decoration-muted="not active">
+                <field name="ma_tai_san"/>
+                <field name="ten_tai_san"/>
+                <field name="loai_tai_san_id"/>
+                <field name="phuong_phap_khau_hao"/>
+                <field name="nguyen_gia" sum="Tổng" widget="monetary"/>
+                <field name="hao_mon_luy_ke" sum="Tổng" widget="monetary"/>
+                <field name="gia_tri_con_lai" sum="Tổng" widget="monetary"/>
+                <field name="so_but_toan"/>
+                <field name="co_khau_hao" widget="boolean_toggle"/>
+                <field name="active" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+    
+    <!-- Form View -->
+    <record id="view_ke_toan_tai_san_form" model="ir.ui.view">
+        <field name="name">ke.toan.tai.san.form</field>
+        <field name="model">ke_toan.tai_san</field>
+        <field name="arch" type="xml">
+            <form string="Kế toán Tài sản">
+                <header>
+                    <button name="sinh_but_toan_khau_hao" string="Khấu hao Thủ công" 
+                            type="object" class="oe_highlight"
+                            attrs="{'invisible': ['|', ('co_khau_hao', '=', False), ('gia_tri_con_lai', '&lt;=', 0)]}"/>
+                    <button name="action_view_but_toan" string="Xem Bút toán" 
+                            type="object" class="oe_stat_button" icon="fa-book"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_but_toan" type="object" class="oe_stat_button" icon="fa-book">
+                            <field name="so_but_toan" widget="statinfo" string="Bút toán"/>
+                        </button>
+                    </div>
+                    
+                    <widget name="web_ribbon" title="Không khấu hao" bg_color="bg-danger" 
+                            attrs="{'invisible': [('co_khau_hao', '=', True)]}"/>
+                    
+                    <group>
+                        <group string="Thông tin Tài sản">
+                            <field name="tai_san_id" options="{'no_create': True}"/>
+                            <field name="ma_tai_san"/>
+                            <field name="ten_tai_san"/>
+                            <field name="loai_tai_san_id"/>
+                            <field name="don_vi_id"/>
+                        </group>
+                        <group string="Giá trị">
+                            <field name="nguyen_gia" widget="monetary"/>
+                            <field name="hao_mon_luy_ke" widget="monetary"/>
+                            <field name="gia_tri_con_lai" widget="monetary"/>
+                            <field name="gia_tri_thanh_ly" widget="monetary"/>
+                        </group>
+                    </group>
+                    
+                    <group>
+                        <group string="Tài khoản Kế toán">
+                            <field name="tk_nguyen_gia"/>
+                            <field name="tk_hao_mon"/>
+                            <field name="tk_chi_phi"/>
+                        </group>
+                        <group string="Cấu hình Khấu hao">
+                            <field name="co_khau_hao"/>
+                            <field name="phuong_phap_khau_hao"/>
+                            <field name="thoi_gian_khau_hao" attrs="{'invisible': [('phuong_phap_khau_hao', '=', 'so_du_giam_dan')]}"/>
+                            <field name="ty_le_khau_hao_nam" attrs="{'invisible': [('phuong_phap_khau_hao', '=', 'duong_thang')]}"/>
+                            <field name="ngay_bat_dau_khau_hao"/>
+                        </group>
+                    </group>
+                    
+                    <notebook>
+                        <page string="Bút toán Khấu hao">
+                            <field name="but_toan_ids" readonly="1">
+                                <tree decoration-success="state=='posted'" decoration-muted="state=='cancelled'">
+                                    <field name="ma_but_toan"/>
+                                    <field name="ngay_ghi_nhan"/>
+                                    <field name="so_tien" sum="Tổng" widget="monetary"/>
+                                    <field name="state" widget="badge" 
+                                           decoration-success="state=='posted'" 
+                                           decoration-info="state=='draft'"
+                                           decoration-danger="state=='cancelled'"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Ghi chú">
+                            <field name="ghi_chu" placeholder="Nhập ghi chú..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    
+    <!-- Search View -->
+    <record id="view_ke_toan_tai_san_search" model="ir.ui.view">
+        <field name="name">ke.toan.tai.san.search</field>
+        <field name="model">ke_toan.tai_san</field>
+        <field name="arch" type="xml">
+            <search string="Tìm kiếm">
+                <field name="ma_tai_san"/>
+                <field name="ten_tai_san"/>
+                <field name="loai_tai_san_id"/>
+                <filter string="Có khấu hao" name="co_khau_hao" domain="[('co_khau_hao', '=', True)]"/>
+                <filter string="Không khấu hao" name="khong_khau_hao" domain="[('co_khau_hao', '=', False)]"/>
+                <filter string="Còn giá trị" name="con_gia_tri" domain="[('gia_tri_con_lai', '&gt;', 0)]"/>
+                <group expand="0" string="Nhóm theo">
+                    <filter string="Loại tài sản" name="group_loai" context="{'group_by': 'loai_tai_san_id'}"/>
+                    <filter string="Phương pháp KH" name="group_pp" context="{'group_by': 'phuong_phap_khau_hao'}"/>
+                    <filter string="Đơn vị" name="group_dv" context="{'group_by': 'don_vi_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    
+    <!-- Action -->
+    <record id="action_ke_toan_tai_san" model="ir.actions.act_window">
+        <field name="name">Kế toán Tài sản</field>
+        <field name="res_model">ke_toan.tai_san</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_co_khau_hao': 1, 'search_default_con_gia_tri': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo liên kết Kế toán cho Tài sản
+            </p>
+            <p>
+                Liên kết tài sản với hệ thống kế toán để tự động khấu hao và sinh bút toán.
+            </p>
+        </field>
+    </record>
+    
+</odoo>

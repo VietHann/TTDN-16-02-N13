@@ -1,0 +1,47 @@
+.o_kanban_card_survey {
+    & > .row {
+    min-height: 60px;
+    }
+}
+
+.o_kanban_card_survey_successed{
+    background-image:
+        linear-gradient(rgba(255,255,255,.9), 
+                        rgba(255,255,255,.9)),
+        url(/survey/static/src/img/trophy-solid.svg);
+    background-repeat: no-repeat;
+    background-position: bottom 6px left -45px;
+    background-size: 100%, 100px;
+}
+
+table.o_section_list_view tr.o_data_row.o_is_section {
+    font-weight: bold;
+    background-color: #DDD;
+    border-top: 1px solid #BBB;
+    border-bottom: 1px solid #BBB;
+}
+
+.icon_rotates {
+    transform: rotate(180deg);
+}
+
+.o_preview_questions {
+    border: 3px solid #C9C6C6;
+    width: auto;
+    padding: 10px 30px 5px;
+    margin-top: 15px;
+    color: #C9C6C6;
+}
+
+.o_preview_questions .o_datetime {
+    border: 1px solid #D8D7D7;
+    margin-bottom: 5px;
+}
+
+.o_preview_questions .o_matrix_head {
+    border-bottom: 1px solid #D8D7D7;
+}
+
+.o_preview_questions .o_matrix_row {
+    border-top: 1px solid #D8D7D7;
+}

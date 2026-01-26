@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_thu_chi_tree" model="ir.ui.view">
+        <field name="name">ke.toan.thu.chi.tree</field>
+        <field name="model">ke_toan.thu_chi</field>
+        <field name="arch" type="xml">
+            <tree string="Thu Chi" decoration-success="loai_phieu=='thu'" decoration-warning="loai_phieu=='chi'">
+                <field name="ma_phieu"/>
+                <field name="loai_phieu" widget="badge"/>
+                <field name="ngay_ghi_nhan"/>
+                <field name="doi_tuong"/>
+                <field name="so_tien" widget="monetary" sum="Tổng"/>
+                <field name="phuong_thuc"/>
+                <field name="trang_thai" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_thu_chi_form" model="ir.ui.view">
+        <field name="name">ke.toan.thu.chi.form</field>
+        <field name="model">ke_toan.thu_chi</field>
+        <field name="arch" type="xml">
+            <form string="Phiếu Thu Chi">
+                <header>
+                    <button name="action_duyet" string="Duyệt" type="object" attrs="{'invisible': [('trang_thai', '!=', 'nhap')]}" class="oe_highlight"/>
+                    <button name="action_huy" string="Hủy" type="object" attrs="{'invisible': [('trang_thai', '!=', 'nhap')]}"/>
+                    <button name="action_xem_but_toan" string="Xem bút toán" type="object" attrs="{'invisible': [('but_toan_id', '=', False)]}"/>
+                    <field name="trang_thai" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="ma_phieu" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="loai_phieu"/>
+                            <field name="ngay_ghi_nhan"/>
+                            <field name="doi_tuong"/>
+                        </group>
+                        <group>
+                            <field name="so_tien" widget="monetary"/>
+                            <field name="phuong_thuc"/>
+                            <field name="tai_khoan_id"/>
+                            <field name="don_vi_id"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="noi_dung" placeholder="Nội dung thu/chi..."/>
+                    </group>
+                    <group>
+                        <field name="nguoi_lap_id"/>
+                        <field name="but_toan_id" readonly="1"/>
+                    </group>
+                    <group>
+                        <field name="ghi_chu" placeholder="Ghi chú..."/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_thu_chi_search" model="ir.ui.view">
+        <field name="name">ke.toan.thu.chi.search</field>
+        <field name="model">ke_toan.thu_chi</field>
+        <field name="arch" type="xml">
+            <search string="Tìm Thu Chi">
+                <field name="ma_phieu"/>
+                <field name="doi_tuong"/>
+                <filter string="Phiếu Thu" name="thu" domain="[('loai_phieu','=','thu')]"/>
+                <filter string="Phiếu Chi" name="chi" domain="[('loai_phieu','=','chi')]"/>
+                <filter string="Nháp" name="nhap" domain="[('trang_thai','=','nhap')]"/>
+                <filter string="Đã duyệt" name="da_duyet" domain="[('trang_thai','=','da_duyet')]"/>
+                <group expand="0" string="Nhóm theo">
+                    <filter string="Loại phiếu" name="group_loai" context="{'group_by':'loai_phieu'}"/>
+                    <filter string="Phương thức" name="group_phuong_thuc" context="{'group_by':'phuong_thuc'}"/>
+                    <filter string="Ngày" name="group_ngay" context="{'group_by':'ngay_ghi_nhan'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Actions -->
+    <record id="action_phieu_thu" model="ir.actions.act_window">
+        <field name="name">Phiếu Thu</field>
+        <field name="res_model">ke_toan.thu_chi</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('loai_phieu','=','thu')]</field>
+        <field name="context">{'default_loai_phieu': 'thu'}</field>
+    </record>
+
+    <record id="action_phieu_chi" model="ir.actions.act_window">
+        <field name="name">Phiếu Chi</field>
+        <field name="res_model">ke_toan.thu_chi</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('loai_phieu','=','chi')]</field>
+        <field name="context">{'default_loai_phieu': 'chi'}</field>
+    </record>
+
+    <!-- Menus will be added in menu.xml -->
+</odoo>

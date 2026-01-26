@@ -1,0 +1,398 @@
+/* ============================================
+   NHÂN SỰ - PREMIUM UI STYLES
+   Modern HR Management Theme - Emerald
+   ============================================ */
+
+/* ============= COLOR PALETTE ============= */
+:root {
+    /* Primary Colors - Emerald Green */
+    --nhansu-primary-start: #059669;
+    --nhansu-primary-end: #10b981;
+    --nhansu-primary: #047857;
+    --nhansu-primary-light: #34d399;
+    --nhansu-primary-dark: #065f46;
+
+    /* Accent Colors - Teal */
+    --nhansu-accent: #0d9488;
+    --nhansu-accent-light: #2dd4bf;
+
+    /* Status Colors */
+    --nhansu-success: #22c55e;
+    --nhansu-success-light: #dcfce7;
+    --nhansu-warning: #eab308;
+    --nhansu-warning-light: #fef9c3;
+    --nhansu-danger: #ef4444;
+    --nhansu-danger-light: #fee2e2;
+    --nhansu-info: #0ea5e9;
+    --nhansu-info-light: #e0f2fe;
+
+    /* Neutral Colors */
+    --nhansu-gray-50: #f9fafb;
+    --nhansu-gray-100: #f3f4f6;
+    --nhansu-gray-200: #e5e7eb;
+    --nhansu-gray-300: #d1d5db;
+    --nhansu-gray-400: #9ca3af;
+    --nhansu-gray-500: #6b7280;
+    --nhansu-gray-600: #4b5563;
+    --nhansu-gray-700: #374151;
+    --nhansu-gray-800: #1f2937;
+    --nhansu-gray-900: #111827;
+
+    /* Shadows */
+    --nhansu-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --nhansu-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --nhansu-shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --nhansu-shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+    /* Border Radius */
+    --nhansu-radius-sm: 6px;
+    --nhansu-radius: 10px;
+    --nhansu-radius-lg: 16px;
+
+    /* Transitions */
+    --nhansu-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============= FORM VIEW ============= */
+.o_form_view.o_form_editable .o_form_sheet,
+.o_form_view.o_form_readonly .o_form_sheet {
+    background: linear-gradient(160deg, #f0fdf4 0%, #ffffff 50%, #f0fdf4 100%);
+    border-radius: var(--nhansu-radius-lg);
+    box-shadow: var(--nhansu-shadow-md);
+    padding: 28px !important;
+    margin: 16px;
+    border: 1px solid rgba(5, 150, 105, 0.1);
+}
+
+/* Status Bar */
+.o_form_view .o_form_statusbar {
+    background: linear-gradient(135deg, var(--nhansu-primary-start) 0%, var(--nhansu-primary-end) 100%);
+    padding: 16px 24px !important;
+    border-radius: var(--nhansu-radius-lg) var(--nhansu-radius-lg) 0 0;
+    margin: -28px -28px 24px -28px;
+}
+
+.o_form_view .o_form_statusbar .o_statusbar_status>.o_arrow_button {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: white;
+    font-weight: 600;
+    padding: 8px 20px;
+    border-radius: 50px;
+    transition: var(--nhansu-transition);
+}
+
+.o_form_view .o_form_statusbar .o_statusbar_status>.o_arrow_button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.o_form_view .o_form_statusbar .o_statusbar_status>.o_arrow_button.o_arrow_button_current {
+    background: white;
+    color: var(--nhansu-primary);
+    box-shadow: var(--nhansu-shadow);
+}
+
+/* Form Groups with Card Style - Only outer groups */
+.o_form_view>.o_form_sheet>.o_group,
+.o_form_view .o_notebook .o_group:not(.o_inner_group) {
+    background: white;
+    border-radius: var(--nhansu-radius);
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: var(--nhansu-shadow-sm);
+    border: 1px solid var(--nhansu-gray-200);
+    position: relative;
+    overflow: hidden;
+}
+
+.o_form_view>.o_form_sheet>.o_group::before,
+.o_form_view .o_notebook .o_group:not(.o_inner_group)::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--nhansu-primary-start), var(--nhansu-primary-end));
+    border-radius: 0 4px 4px 0;
+}
+
+.o_form_view>.o_form_sheet>.o_group:hover,
+.o_form_view .o_notebook .o_group:not(.o_inner_group):hover {
+    box-shadow: var(--nhansu-shadow);
+    border-color: var(--nhansu-primary-light);
+}
+
+/* Preserve inner group default styles */
+.o_form_view .o_inner_group {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+}
+
+.o_form_view .o_inner_group::before {
+    display: none !important;
+}
+
+/* Group Labels */
+.o_form_view .o_group>tbody>tr>td.o_td_label {
+    font-weight: 600;
+    color: var(--nhansu-gray-700);
+    padding: 12px 16px 12px 0;
+    font-size: 13px;
+}
+
+/* Input Fields */
+.o_form_view .o_field_widget input,
+.o_form_view .o_field_widget textarea,
+.o_form_view .o_field_widget select {
+    border: 2px solid var(--nhansu-gray-200);
+    border-radius: var(--nhansu-radius-sm);
+    padding: 10px 14px;
+    transition: var(--nhansu-transition);
+}
+
+.o_form_view .o_field_widget input:focus,
+.o_form_view .o_field_widget textarea:focus {
+    border-color: var(--nhansu-primary);
+    box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.1);
+    outline: none;
+}
+
+/* ============= NOTEBOOK TABS ============= */
+.o_form_view .o_notebook>.nav-tabs {
+    border-bottom: 2px solid var(--nhansu-gray-200);
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.o_form_view .o_notebook>.nav-tabs>.nav-item>.nav-link {
+    background: transparent;
+    border: none;
+    color: var(--nhansu-gray-500);
+    padding: 12px 24px;
+    font-weight: 600;
+    border-radius: var(--nhansu-radius-sm) var(--nhansu-radius-sm) 0 0;
+    transition: var(--nhansu-transition);
+}
+
+.o_form_view .o_notebook>.nav-tabs>.nav-item>.nav-link:hover {
+    color: var(--nhansu-primary);
+    background: rgba(5, 150, 105, 0.05);
+}
+
+.o_form_view .o_notebook>.nav-tabs>.nav-item>.nav-link.active {
+    color: var(--nhansu-primary);
+    background: linear-gradient(to bottom, rgba(5, 150, 105, 0.1), transparent);
+}
+
+.o_form_view .o_notebook>.nav-tabs>.nav-item>.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--nhansu-primary-start), var(--nhansu-primary-end));
+    border-radius: 3px 3px 0 0;
+}
+
+.o_form_view .o_notebook>.tab-content {
+    background: white;
+    border-radius: var(--nhansu-radius);
+    padding: 20px;
+    box-shadow: var(--nhansu-shadow-sm);
+    border: 1px solid var(--nhansu-gray-200);
+}
+
+/* ============= BUTTONS ============= */
+.o_form_view .btn-primary,
+.o_list_view .btn-primary {
+    background: linear-gradient(135deg, var(--nhansu-primary-start) 0%, var(--nhansu-primary-end) 100%);
+    border: none;
+    border-radius: var(--nhansu-radius-sm);
+    padding: 10px 24px;
+    font-weight: 600;
+    box-shadow: var(--nhansu-shadow-sm);
+    transition: var(--nhansu-transition);
+}
+
+.o_form_view .btn-primary:hover,
+.o_list_view .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--nhansu-shadow-md), 0 0 20px rgba(5, 150, 105, 0.3);
+}
+
+.o_form_view .btn-secondary,
+.o_list_view .btn-secondary {
+    background: white;
+    border: 2px solid var(--nhansu-gray-300);
+    color: var(--nhansu-gray-700);
+    border-radius: var(--nhansu-radius-sm);
+    padding: 10px 24px;
+    font-weight: 600;
+    transition: var(--nhansu-transition);
+}
+
+.o_form_view .btn-secondary:hover {
+    background: var(--nhansu-gray-100);
+    border-color: var(--nhansu-primary);
+}
+
+/* ============= LIST VIEW ============= */
+.o_list_view {
+    background: white;
+    border-radius: var(--nhansu-radius-lg);
+    box-shadow: var(--nhansu-shadow);
+    margin: 16px;
+    overflow: hidden;
+    border: 1px solid var(--nhansu-gray-200);
+}
+
+.o_list_view .o_list_table thead th {
+    background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+    color: var(--nhansu-primary-dark);
+    font-weight: 700;
+    padding: 16px;
+    border-bottom: 2px solid var(--nhansu-primary-light);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.o_list_view .o_list_table tbody tr {
+    transition: var(--nhansu-transition);
+}
+
+.o_list_view .o_list_table tbody tr:hover {
+    background: linear-gradient(90deg, rgba(5, 150, 105, 0.05), rgba(16, 185, 129, 0.08)) !important;
+}
+
+.o_list_view .o_list_table tbody td {
+    padding: 14px 16px;
+    color: var(--nhansu-gray-700);
+    border-bottom: 1px solid var(--nhansu-gray-100);
+}
+
+/* Alternating Rows */
+.o_list_view .o_list_table tbody tr:nth-child(even) {
+    background: var(--nhansu-gray-50);
+}
+
+/* ============= KANBAN VIEW ============= */
+.o_kanban_view {
+    background: linear-gradient(160deg, #ecfdf5 0%, #f0fdf4 100%);
+    padding: 20px;
+}
+
+.o_kanban_view .o_kanban_record {
+    background: white;
+    border-radius: var(--nhansu-radius);
+    box-shadow: var(--nhansu-shadow);
+    border: 1px solid var(--nhansu-gray-200);
+    transition: var(--nhansu-transition);
+}
+
+.o_kanban_view .o_kanban_record:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--nhansu-shadow-lg);
+    border-color: var(--nhansu-primary-light);
+}
+
+.o_kanban_view .o_kanban_group_header {
+    background: linear-gradient(135deg, var(--nhansu-primary-start) 0%, var(--nhansu-primary-end) 100%);
+    color: white;
+    border-radius: var(--nhansu-radius) var(--nhansu-radius) 0 0;
+    padding: 16px;
+    font-weight: 700;
+}
+
+/* ============= SEARCH ============= */
+.o_searchview {
+    border-radius: var(--nhansu-radius);
+    border: 2px solid var(--nhansu-gray-200);
+    transition: var(--nhansu-transition);
+    box-shadow: var(--nhansu-shadow-sm);
+}
+
+.o_searchview:focus-within {
+    border-color: var(--nhansu-primary);
+    box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.1);
+}
+
+/* ============= MODALS ============= */
+.modal-content {
+    border-radius: var(--nhansu-radius-lg);
+    box-shadow: var(--nhansu-shadow-lg);
+    border: none;
+}
+
+.modal-header {
+    background: linear-gradient(135deg, var(--nhansu-primary-start) 0%, var(--nhansu-primary-end) 100%);
+    color: white;
+    border-bottom: none;
+    padding: 20px 24px;
+    border-radius: var(--nhansu-radius-lg) var(--nhansu-radius-lg) 0 0;
+}
+
+.modal-header .modal-title {
+    font-weight: 700;
+}
+
+.modal-header .btn-close {
+    filter: invert(1);
+}
+
+.modal-body {
+    padding: 24px;
+    background: var(--nhansu-gray-50);
+}
+
+/* ============= BADGES ============= */
+.badge {
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-weight: 600;
+}
+
+/* ============= EMPLOYEE CARD STYLE ============= */
+.o_HR_employee_list .o_kanban_record {
+    border-left: 4px solid var(--nhansu-primary);
+}
+
+/* ============= ANIMATIONS ============= */
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.o_form_view .o_form_sheet {
+    animation: fadeInSlide 0.4s ease-out;
+}
+
+.o_list_view {
+    animation: fadeInSlide 0.3s ease-out;
+}
+
+/* ============= RESPONSIVE ============= */
+@media (max-width: 768px) {
+    .o_form_view .o_form_sheet {
+        margin: 8px;
+        padding: 16px !important;
+    }
+
+    .o_list_view {
+        margin: 8px;
+    }
+}

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Cron Job: Gửi thông báo đến hạn trả tài sản (hàng ngày lúc 9:00) -->
+        <record id="ir_cron_loan_due_reminder" model="ir.cron">
+            <field name="name">Gửi thông báo đến hạn trả tài sản</field>
+            <field name="model_id" ref="model_phieu_muon"/>
+            <field name="state">code</field>
+            <field name="code">env['phieu_muon'].cron_send_loan_due_reminders()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="active" eval="True"/>
+            <field name="nextcall" eval="(DateTime.now() + relativedelta(hours=1)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="priority">15</field>
+        </record>
+
+        <!-- Cron Job: Gửi thông báo quá hạn trả tài sản (hàng ngày lúc 9:00) -->
+        <record id="ir_cron_loan_overdue_notification" model="ir.cron">
+            <field name="name">Gửi thông báo quá hạn trả tài sản</field>
+            <field name="model_id" ref="model_phieu_muon"/>
+            <field name="state">code</field>
+            <field name="code">env['phieu_muon'].cron_send_loan_overdue_notifications()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="active" eval="True"/>
+            <field name="nextcall" eval="(DateTime.now() + relativedelta(hours=1)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="priority">15</field>
+        </record>
+
+        <!-- Cron Job: Gửi thông báo thay đổi trạng thái tài sản (hàng ngày lúc 10:00) -->
+        <record id="ir_cron_asset_status_notifications" model="ir.cron">
+            <field name="name">Gửi thông báo thay đổi trạng thái tài sản</field>
+            <field name="model_id" ref="model_tai_san"/>
+            <field name="state">code</field>
+            <field name="code">env['tai_san'].cron_send_asset_status_notifications()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="active" eval="True"/>
+            <field name="nextcall" eval="(DateTime.now() + relativedelta(hours=2)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="priority">15</field>
+        </record>
+
+    </data>
+</odoo>
