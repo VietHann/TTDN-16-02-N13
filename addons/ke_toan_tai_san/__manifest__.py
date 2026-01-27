@@ -30,7 +30,6 @@
     'version': '15.0.1.0.0',
     'depends': [
         'base',
-        'account',
         'mail',
         'quan_ly_tai_san',
         'nhan_su',

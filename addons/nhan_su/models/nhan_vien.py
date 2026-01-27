@@ -30,7 +30,7 @@ class NhanVien(models.Model):
         inverse_name="nhan_vien_id", 
         string = "Danh sách chứng chỉ bằng cấp")
     so_nguoi_bang_tuoi = fields.Integer("Số người bằng tuổi", 
-                                        compute="so_nguoi_bang_tuoi",
+                                        compute="_compute_so_nguoi_bang_tuoi",
                                         store=True
                                         )
     
@@ -45,7 +45,7 @@ class NhanVien(models.Model):
                     ]
                 )
                 record.so_nguoi_bang_tuoi = len(records)
-    _sql_constrains = [
+    _sql_constraints = [
         ('ma_dinh_danh_unique', 'unique(ma_dinh_danh)', 'Mã định danh phải là duy nhất')
     ]
 

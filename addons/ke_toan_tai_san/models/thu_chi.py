@@ -109,13 +109,6 @@ class ThuChi(models.Model):
         help="Trạng thái phiếu"
     )
 
-    but_toan_id = fields.Many2one(
-        'account.move',
-        string="Bút toán",
-        readonly=True,
-        help="Bút toán kế toán Odoo"
-    )
-
     ghi_chu = fields.Text("Ghi chú")
 
     _sql_constraints = [
@@ -132,64 +125,30 @@ class ThuChi(models.Model):
     def create(self, vals):
         if vals.get('ma_phieu', 'New') == 'New':
             if vals.get('loai_phieu') == 'thu':
-                vals['ma_phieu'] = self.env['ir.sequence'].next_by_code('ke_toan.phieu_thu') or 'PT-00001'
+                seq = self.env['ir.sequence'].next_by_code('ke_toan.phieu_thu')
+                if not seq:
+                    # Fallback: tạo mã dựa trên timestamp
+                    import time
+                    seq = f"PT-{int(time.time())}"
+                vals['ma_phieu'] = seq
             else:
-                vals['ma_phieu'] = self.env['ir.sequence'].next_by_code('ke_toan.phieu_chi') or 'PC-00001'
+                seq = self.env['ir.sequence'].next_by_code('ke_toan.phieu_chi')
+                if not seq:
+                    import time
+                    seq = f"PC-{int(time.time())}"
+                vals['ma_phieu'] = seq
         return super(ThuChi, self).create(vals)
 
     def action_duyet(self):
-        """Duyệt phiếu và sinh bút toán"""
+        """Duyệt phiếu thu chi"""
         for record in self:
             if record.trang_thai != 'nhap':
                 raise UserError("Chỉ phiếu nháp mới có thể duyệt!")
             
-            # Sinh bút toán Odoo
-            move_lines = []
-            if record.loai_phieu == 'thu':
-                # Nợ TK Tiền, Có TK Thu nhập
-                move_lines = [
-                    (0, 0, {
-                        'name': record.noi_dung,
-                        'account_id': self._get_tk_tien().account_id.id,
-                        'debit': record.so_tien,
-                        'credit': 0,
-                    }),
-                    (0, 0, {
-                        'name': record.noi_dung,
-                        'account_id': record.tai_khoan_id.account_id.id,
-                        'debit': 0,
-                        'credit': record.so_tien,
-                    }),
-                ]
-            else:  # chi
-                # Nợ TK Chi phí, Có TK Tiền
-                move_lines = [
-                    (0, 0, {
-                        'name': record.noi_dung,
-                        'account_id': record.tai_khoan_id.account_id.id,
-                        'debit': record.so_tien,
-                        'credit': 0,
-                    }),
-                    (0, 0, {
-                        'name': record.noi_dung,
-                        'account_id': self._get_tk_tien().account_id.id,
-                        'debit': 0,
-                        'credit': record.so_tien,
-                    }),
-                ]
-
-            move = self.env['account.move'].create({
-                'move_type': 'entry',
-                'date': record.ngay_ghi_nhan,
-                'ref': record.ma_phieu,
-                'journal_id': self._get_journal().id,
-                'line_ids': move_lines,
-            })
-            move.action_post()
-            
+            # Chỉ duyệt trạng thái (tạm bỏ sinh bút toán account.move)
+            # TODO: Khi có module accounting đầy đủ, bổ sung sinh bút toán
             record.write({
                 'trang_thai': 'da_duyet',
-                'but_toan_id': move.id,
             })
 
     def action_huy(self):
@@ -206,21 +165,3 @@ class ThuChi(models.Model):
         else:
             return self.env['ke_toan.tai_khoan'].search([('ma_tai_khoan', '=', '112')], limit=1)
 
-    def _get_journal(self):
-        """Lấy sổ nhật ký"""
-        return self.env['account.journal'].search([('type', '=', 'general')], limit=1)
-
-    def action_xem_but_toan(self):
-        """Xem bút toán"""
-        self.ensure_one()
-        if not self.but_toan_id:
-            raise UserError("Phiếu chưa có bút toán!")
-        
-        return {
-            'name': 'Bút toán',
-            'type': 'ir.actions.act_window',
-            'res_model': 'account.move',
-            'res_id': self.but_toan_id.id,
-            'view_mode': 'form',
-            'target': 'current',
-        }

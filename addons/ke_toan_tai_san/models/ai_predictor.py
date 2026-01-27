@@ -125,6 +125,11 @@ class AITaiSanPredictor(models.Model):
     
     active = fields.Boolean('Đang hoạt động', default=True)
     
+    _sql_constraints = [
+        ('tai_san_unique', 'unique(tai_san_id)', 
+         'Mỗi tài sản chỉ có thể có một bản ghi dự đoán AI!')
+    ]
+    
     @api.depends('tai_san_id', 'tai_san_id.ngay_mua', 'tai_san_id.gia_tien_mua', 
                  'tai_san_id.gia_tri_hien_tai')
     def _compute_features(self):
@@ -177,7 +182,7 @@ class AITaiSanPredictor(models.Model):
             # 6. Số lần hỏng
             record.so_lan_hong = self.env['lich_su_kiem_ke'].search_count([
                 ('tai_san_id', '=', tai_san.id),
-                ('trang_thai_kiem_ke', 'in', ['hong_hoc', 'sua_chua'])
+                ('trang_thai_sau', 'in', ['hong_hoc', 'sua_chua'])
             ])
             
             # 7. Khoảng cách bảo trì trung bình

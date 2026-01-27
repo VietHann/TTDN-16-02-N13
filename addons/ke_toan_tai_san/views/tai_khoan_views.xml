@@ -38,8 +38,8 @@
                     <group>
                         <field name="mo_ta" placeholder="Mô tả tài khoản..."/>
                     </group>
-                    <group string="Liên kết Odoo">
-                        <field name="account_account_id"/>
+                    <group string="Số dư">
+                        <field name="so_du" widget="monetary"/>
                     </group>
                 </sheet>
             </form>

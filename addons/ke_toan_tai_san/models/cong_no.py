@@ -240,8 +240,17 @@ class CongNoThanhToan(models.Model):
         for record in self:
             if record.so_tien <= 0:
                 raise ValidationError("Số tiền thanh toán phải lớn hơn 0!")
-            if record.so_tien > record.cong_no_id.so_tien_con_lai:
+            
+            # Tính số tiền còn lại trực tiếp (không dùng compute field)
+            cong_no = record.cong_no_id
+            tong_da_tra = sum(
+                cong_no.thanh_toan_ids.filtered(lambda x: x.id != record.id).mapped('so_tien')
+            )
+            so_con_lai = cong_no.so_tien_goc - tong_da_tra
+            
+            if record.so_tien > so_con_lai:
                 raise ValidationError(
                     f"Số tiền thanh toán ({record.so_tien:,.0f}) "
-                    f"vượt quá số nợ còn lại ({record.cong_no_id.so_tien_con_lai:,.0f})!"
+                    f"vượt quá số nợ còn lại ({so_con_lai:,.0f})!"
                 )
+

@@ -26,7 +26,6 @@
                 <header>
                     <button name="action_duyet" string="Duyệt" type="object" attrs="{'invisible': [('trang_thai', '!=', 'nhap')]}" class="oe_highlight"/>
                     <button name="action_huy" string="Hủy" type="object" attrs="{'invisible': [('trang_thai', '!=', 'nhap')]}"/>
-                    <button name="action_xem_but_toan" string="Xem bút toán" type="object" attrs="{'invisible': [('but_toan_id', '=', False)]}"/>
                     <field name="trang_thai" widget="statusbar"/>
                 </header>
                 <sheet>
@@ -53,7 +52,6 @@
                     </group>
                     <group>
                         <field name="nguoi_lap_id"/>
-                        <field name="but_toan_id" readonly="1"/>
                     </group>
                     <group>
                         <field name="ghi_chu" placeholder="Ghi chú..."/>

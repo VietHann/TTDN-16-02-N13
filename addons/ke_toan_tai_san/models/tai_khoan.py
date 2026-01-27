@@ -69,11 +69,12 @@ class TaiKhoan(models.Model):
     
     active = fields.Boolean('Đang sử dụng', default=True)
     
-    # Liên kết với account.account của Odoo
-    account_account_id = fields.Many2one(
-        'account.account',
-        'Account Odoo',
-        help='Tài khoản tương ứng trong module Account của Odoo'
+    # Số dư tài khoản (quản lý nội bộ)
+    so_du = fields.Float(
+        'Số dư',
+        digits=(16, 2),
+        default=0.0,
+        help='Số dư hiện tại của tài khoản'
     )
     
     _sql_constraints = [

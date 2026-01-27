@@ -28,8 +28,8 @@
                             class="oe_highlight" states="draft"/>
                     <button name="action_cancel" string="Hủy" type="object" 
                             states="draft,posted" confirm="Bạn có chắc muốn hủy bút toán này?"/>
-                    <button name="action_view_account_move" string="Xem Bút toán Odoo" 
-                            type="object" class="btn-secondary" attrs="{'invisible': [('account_move_id', '=', False)]}"/>
+                    <button name="action_draft" string="Chuyển về nháp" type="object" 
+                            states="cancelled"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,posted"/>
                 </header>
                 <sheet>
@@ -46,14 +46,12 @@
                             <field name="tk_co_id"/>
                             <field name="so_tien" widget="monetary"/>
                             <field name="don_vi_id"/>
-                            <field name="journal_id"/>
                         </group>
                     </group>
                     <group>
                         <field name="dien_giai" placeholder="Diễn giải bút toán..."/>
                     </group>
-                    <group string="Liên kết">
-                        <field name="account_move_id" readonly="1"/>
+                    <group string="Thông tin khác">
                         <field name="company_id" groups="base.group_multi_company"/>
                     </group>
                     <group>
