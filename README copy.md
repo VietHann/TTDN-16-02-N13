@@ -114,30 +114,6 @@ Hạch toán tự động và quản lý tài chính liên quan đến tài sả
 
 ---
 
-## 🏗️ Kiến trúc Hệ thống
-
-Hệ thống được xây dựng dựa trên kiến trúc module hóa của Odoo Framework, tuân theo mô hình **MVC (Model-View-Controller)**:
-
-### 1. Lớp Dữ liệu (Model & ORM)
-- **PostgreSQL**: Cơ sở dữ liệu quan hệ lưu trữ toàn bộ dữ liệu hệ thống.
-- **ORM (Object-Relational Mapping)**: Odoo ORM giúp tương tác với cơ sở dữ liệu thông qua các đối tượng Python mà không cần viết SQL thủ công.
-- **Modules**: Mỗi tính năng (Tài sản, Kế toán, Nhân sự) được đóng gói thành các module độc lập nhưng có khả năng kế thừa và liên kết chặt chẽ với nhau.
-
-### 2. Lớp Logic (Business Logic)
-- **Python Code**: Xử lý các quy trình nghiệp vụ phức tạp, tính toán (khấu hao, lương, thuế) và các tác vụ tự động (Scheduled Actions).
-- **Workflow**: Định nghĩa các luồng quy trình (ví dụ: Quy trình phê duyệt mua sắm, Quy trình tuyển dụng).
-
-### 3. Lớp Giao diện (Presentation)
-- **Web Client**: Giao diện người dùng trên trình duyệt (Responsive), hỗ trợ cả Desktop và Mobile.
-- **XML/QWeb**: Định nghĩa cấu trúc các View (Form, Tree, Kanban, Dashboard).
-- **JavaScript**: Xử lý các tương tác phía client, hiển thị biểu đồ và dashboard động.
-
-### 4. Tích hợp AI
-- **AI Gateway**: Module trung gian kết nối với OpenRouter API.
-- **Data Processor**: Thu thập dữ liệu từ các module Odoo -> Gửi đến AI Model -> Nhận kết quả và cập nhật lại vào hệ thống (ví dụ: Dự báo bảo trì, Đánh giá nhân sự).
-
----
-
 ## 🚀 Hướng dẫn cài đặt
 
 ### 1. Cài đặt môi trường
@@ -177,11 +153,5 @@ Truy cập: http://localhost:8069/
 
 ---
 
-## � Nguồn tham khảo
-Dự án có tham khảo và kế thừa tài nguyên từ:
-- [TTDN-15-05-N1](https://github.com/HuyHoangDevVN/TTDN-15-05-N1) - HuyHoangDevVN
-
----
-
-## �📄 License
+## 📄 License
 © 2024 AIoTLab, Faculty of Information Technology, DaiNam University. All rights reserved.
