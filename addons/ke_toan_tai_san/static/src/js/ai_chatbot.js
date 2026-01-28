@@ -32,11 +32,11 @@ odoo.define('ke_toan_tai_san.AIChatbot', function (require) {
                 // Try to load from CDN
                 var script = document.createElement('script');
                 script.src = 'https://cdn.jsdelivr.net/npm/marked@4.3.0/lib/marked.umd.js';
-                script.onload = function() {
+                script.onload = function () {
                     console.log('Marked.js loaded successfully');
                     self.markedLoaded = true;
                 };
-                script.onerror = function() {
+                script.onerror = function () {
                     console.warn('Failed to load marked.js, falling back to basic formatting');
                     self.markedLoaded = false;
                 };
@@ -50,14 +50,14 @@ odoo.define('ke_toan_tai_san.AIChatbot', function (require) {
             var self = this;
 
             // Setup auto-resize for textarea (sẽ được gọi sau khi DOM ready)
-            setTimeout(function() {
+            setTimeout(function () {
                 var chatInput = self.$('#chat-input');
                 if (chatInput.length > 0) {
                     // Focus on input
                     chatInput.focus();
 
                     // Setup auto-resize for textarea
-                    chatInput.on('input', function() {
+                    chatInput.on('input', function () {
                         self._autoResizeTextarea(this);
                     });
 
@@ -227,18 +227,20 @@ odoo.define('ke_toan_tai_san.AIChatbot', function (require) {
         },
 
         _addMessage: function (messageData) {
-            var messageItemClass = messageData.type === 'user' ? 'user-message' : 'message-item';
-            var avatarIcon = messageData.type === 'user' ? 'fa-user' : 'fa-robot';
-            var avatarClass = messageData.type === 'user' ? 'user-avatar' : 'ai-avatar';
-            var bubbleClass = messageData.type === 'error' ? 'error-message' : '';
+            var isUser = messageData.type === 'user';
+            var rowClass = isUser ? 'user-message-row' : 'ai-message-row';
+            var bubbleClass = isUser ? 'user-bubble' : 'ai-bubble';
+            var avatarIcon = isUser ? 'fa-user' : 'fa-robot';
+            var avatarClass = isUser ? 'user-avatar' : 'ai-avatar';
+            var errorClass = messageData.type === 'error' ? 'error-message' : '';
 
             var messageHtml = `
-                <div class="message-item ${messageItemClass} ${bubbleClass}">
+                <div class="message-item ${rowClass} ${errorClass}">
                     <div class="${avatarClass}">
                         <i class="fa ${avatarIcon}"></i>
                     </div>
                     <div class="message-content">
-                        <div class="message-bubble ${messageData.type === 'user' ? 'user-message' : 'ai-message'}">
+                        <div class="message-bubble ${bubbleClass}">
                             <div class="message-markdown">
                                 ${this._formatMessage(messageData.content)}
                             </div>
@@ -350,7 +352,7 @@ odoo.define('ke_toan_tai_san.AIChatbot', function (require) {
                 .replace(/^---$/gm, '<hr>');
 
             // Wrap consecutive list items
-            formatted = formatted.replace(/(<li>.*<\/li>\s*)+/g, function(match) {
+            formatted = formatted.replace(/(<li>.*<\/li>\s*)+/g, function (match) {
                 return '<ul>' + match + '</ul>';
             });
 

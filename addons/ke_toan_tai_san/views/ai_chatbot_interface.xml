@@ -6,7 +6,7 @@
         <field name="model">ai.chat.history</field>
         <field name="arch" type="xml">
             <form string="AI Chatbot" js_class="ai_chatbot_form">
-                <sheet>
+                <div class="ai-chatbot-root">
                     <div class="ai-chatbot-wrapper">
                         <!-- Header -->
                         <div class="ai-chat-header">
@@ -15,8 +15,8 @@
                                 <span>AI Trợ lý Quản lý Tài sản</span>
                             </div>
                             <div class="ai-chat-status">
-                                <span class="status-indicator online"></span>
-                                <small>Online</small>
+                                <span class="status-indicator"></span>
+                                <small>Hoạt động</small>
                             </div>
                         </div>
 
@@ -47,9 +47,6 @@
 
                         <!-- Typing Indicator -->
                         <div class="typing-indicator" id="typing-indicator" style="display: none;">
-                            <div class="ai-avatar">
-                                <i class="fa fa-robot" title="AI Typing"></i>
-                            </div>
                             <div class="typing-dots">
                                 <span></span>
                                 <span></span>
@@ -63,8 +60,7 @@
                                 <textarea
                                     id="chat-input"
                                     placeholder="Nhập câu hỏi của bạn... (Hỗ trợ Markdown)"
-                                    rows="2"
-                                    maxlength="2000"></textarea>
+                                    rows="1"></textarea>
                                 <div class="input-actions">
                                     <button type="button" name="clear_history" id="clear-button" class="btn-action" title="Xóa lịch sử">
                                         <i class="fa fa-trash"></i>
@@ -74,19 +70,14 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="input-footer">
-                                <small class="text-muted">
-                                    <i class="fa fa-info-circle"></i>
-                                    AI hiểu và trả lời bằng tiếng Việt. Hỗ trợ Markdown đầy đủ.
-                                </small>
-                            </div>
                         </div>
                     </div>
-                </sheet>
+                </div>
 
                 <!-- Hidden fields -->
                 <field name="conversation_id" invisible="1"/>
             </form>
+            
         </field>
     </record>
 

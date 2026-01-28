@@ -1,8 +1,8 @@
 version: '3.5'
 
 services:
-  postgres-odoo-base-15-01:
-    container_name: postgres_odoo-base-15-01
+  postgres-odoo-base-16-02:
+    container_name: postgres_odoo-base-16-02
     image: postgres:10-alpine
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-postgres}
@@ -10,7 +10,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-odoo}
       PGDATA: /data/postgres
     volumes:
-       - /home/ttdn/ttdn_k15/database_ttdn/cntt15_01_db/_data:/data/postgres
+       - /home/ttdn/ttdn_k15/database_ttdn/cntt16_02_db/_data:/data/postgres
     ports:
       - "5431:5432"
     # networks:

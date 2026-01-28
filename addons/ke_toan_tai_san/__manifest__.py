@@ -27,7 +27,7 @@
     'author': "Đồ án Sinh viên",
     'website': "http://www.yourcompany.com",
     'category': 'Accounting/Accounting',
-    'version': '15.0.1.0.0',
+    'version': '15.0.1.1.0',
     'depends': [
         'base',
         'mail',

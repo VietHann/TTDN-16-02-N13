@@ -30,11 +30,68 @@ Nền tảng ERP được phát triển dựa trên Odoo, phục vụ đào tạ
 
 ---
 
+## 📸 Giao diện & Chức năng
+
+### AI Trợ lý Thông minh & Phân tích
+Tích hợp trí tuệ nhân tạo để hỗ trợ người dùng, dự đoán và phân tích dữ liệu.
+
+| AI Chatbot | Cấu hình & Kết nối |
+|:---:|:---:|
+| ![AI Chatbot](./docs/img/AIChatbot.png) | ![Cấu hình AI](./docs/img/cauhinhAI.png) |
+| *Giao diện Chatbot hỗ trợ người dùng 24/7* | *Cấu hình kết nối với các mô hình AI* |
+
+| Dự báo & Phân tích | Hiệu quả sử dụng |
+|:---:|:---:|
+| ![Dự đoán AI](./docs/img/dudoanAI.png) | ![Phân tích hiệu quả](./docs/img/phantichhieuquaAI.png) |
+| *Dự đoán xu hướng bảo trì và khấu hao* | *Phân tích hiệu quả khai thác tài sản* |
+
+### Phân hệ Quản lý Tài sản
+Quản lý toàn diện vòng đời tài sản từ mua sắm đến thanh lý.
+
+| Danh sách Tài sản | Quản lý Vị trí |
+|:---:|:---:|
+| ![Quản lý Tài sản](./docs/img/quanlytaisan.png) | ![Vị trí Tài sản](./docs/img/vitri_quanlytaisan.png) |
+| *Danh sách tài sản chi tiết* | *Sơ đồ vị trí và bố trí tài sản* |
+
+| Mượn / Trả | Biểu đồ Phân bổ |
+|:---:|:---:|
+| ![Phiếu mượn](./docs/img/phieumuon.png) | ![Phân bổ](./docs/img/phanbotaisantheonhacungcappie.png) |
+| *Quản lý quy trình mượn trả* | *Thống kê tài sản theo nhà cung cấp* |
+
+### Phân hệ Nhân sự (HR)
+Quản lý hồ sơ nhân sự, quá trình công tác và năng lực nhân viên.
+
+| Hồ sơ Nhân viên | Bằng cấp & Chứng chỉ |
+|:---:|:---:|
+| ![Nhân sự](./docs/img/quanlynhansu.png) | ![Chứng chỉ](./docs/img/danhsachchungchibangcap.png) |
+| *Danh sách nhân sự* | *Quản lý hồ sơ năng lực* |
+
+| Lịch sử Công tác | |
+|:---:|:---:|
+| ![Lịch sử công tác](./docs/img/lichsucongtac.png) | |
+| *Theo dõi quá trình làm việc* | |
+
+### Phân hệ Kế toán Tài sản
+Hạch toán tự động và quản lý tài chính liên quan đến tài sản.
+
+| Dashboard Kế toán | Hệ thống Tài khoản |
+|:---:|:---:|
+| ![Kế toán](./docs/img/ketoantaisan.png) | ![Tài khoản](./docs/img/danhmuctaikhoan.png) |
+| *Tổng quan tình hình tài chính* | *Cây danh mục tài khoản kế toán* |
+
+| Ngân sách & Thu Chi | Biểu đồ Giá trị |
+|:---:|:---:|
+| ![Ngân sách](./docs/img/ngansach.png) | ![Giá trị tài sản](./docs/img/giatrihientaitheoloaitaisanbar.png) |
+| *Quản lý ngân sách dự án* | *Thống kê giá trị hiện tại của tài sản* |
+
+---
+
 ## 🔧 Công nghệ sử dụng
 - **Odoo** (Python, JavaScript, XML)
 - **PostgreSQL**
 - **Docker** (cài đặt nhanh môi trường)
 - **Ubuntu**
+- **OpenRouter API** (Tích hợp AI)
 
 ---
 
@@ -85,5 +142,3 @@ Truy cập: http://localhost:8069/
 
 ## 📄 License
 © 2024 AIoTLab, Faculty of Information Technology, DaiNam University. All rights reserved.
-
-    
