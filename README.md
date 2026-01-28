@@ -177,11 +177,11 @@ Truy cập: http://localhost:8069/
 
 ---
 
-## � Nguồn tham khảo
+## 🔎 Nguồn tham khảo
 Dự án có tham khảo và kế thừa tài nguyên từ:
 - [TTDN-15-05-N1](https://github.com/HuyHoangDevVN/TTDN-15-05-N1) - HuyHoangDevVN
 
 ---
 
-## �📄 License
+## 📄 License
 © 2024 AIoTLab, Faculty of Information Technology, DaiNam University. All rights reserved.
