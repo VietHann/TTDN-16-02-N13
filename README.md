@@ -25,6 +25,18 @@ Nền tảng ERP được phát triển dựa trên Odoo, phục vụ đào tạ
 
 ---
 
+## 📄 Poster Dự án
+
+<p align="center">
+    <a href="./poster.pdf">
+        <img src="https://img.shields.io/badge/📄_Xem_Poster_Dự_Án-PDF-red?style=for-the-badge&logo=adobe-acrobat-reader" alt="Poster PDF"/>
+    </a>
+</p>
+
+> 📌 **Poster** trình bày tổng quan về kiến trúc hệ thống, các phân hệ chính và tính năng nổi bật của dự án. [**Nhấn vào đây để xem Poster (PDF)**](./poster.pdf)
+
+---
+
 ## ⚙️ Các phân hệ chính
 
 ### 1. Quản lý Tài sản
