@@ -1,4 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_van_ban_den,van_ban_den.van_ban_den,model_van_ban_den,base.group_user,1,1,1,1
-access_van_ban_di,van_ban_di.van_ban_di,model_van_ban_di,base.group_user,1,1,1,1
-access_loai_van_ban,loai_van_ban.loai_van_ban,model_van_ban_di,base.group_user,1,1,1,1
